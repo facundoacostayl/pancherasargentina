@@ -1,10 +1,12 @@
+import { NavBar } from "../src/ui/NavBar";
+
 function App() {
   return (
-    <>
-      <div>
-        <h1 className="text-center text-red-700 text-5xl">Hello World</h1>
-      </div>
-    </>
+    <div>
+      <NavBar>
+        <h1>Hello</h1>
+      </NavBar>
+    </div>
   );
 }
 
