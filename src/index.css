@@ -17,6 +17,11 @@ body {
   min-height: 100vh;
 }
 
+.app {
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

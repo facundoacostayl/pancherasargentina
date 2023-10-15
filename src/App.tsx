@@ -3,12 +3,17 @@ import { Logo } from "../src/ui/logo";
 
 function App() {
   return (
-    <div>
+    <div className="app">
       <div>
         <Logo></Logo>
       </div>
       <NavBar>
-        <h1>Hello</h1>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
       </NavBar>
     </div>
   );
