@@ -13,7 +13,7 @@ export const Hero: React.FC = () => {
         </ul>
       </NavBar>
       <div className="lg:max-w-[1920px]">
-        <img src="https://i.ibb.co/x1yCxFV/hero-image.jpg" alt="hero-image" />
+        <img src="https://i.ibb.co/DLDgZ5y/hero-image.webp" alt="hero-image" />
       </div>
     </>
   );
