@@ -5,11 +5,11 @@ export const Preview: React.FC = () => {
         - Nuestros Productos (Envíos AMBA e interior) -
       </h2>
       <div className="flex">
-        <div className="w-1/3 border border-gray-200 ">
-          <div className="w-full p-4 ">
-            <div className="object-contain h-2/3">
+        <div className="w-1/3">
+          <div className="w-full p-4">
+            <div className="object-contain h-2/3 border border-gray-300 rounded-md">
               <img
-                className="h-full w-full"
+                className="h-full w-full rounded-md"
                 src="https://i.ibb.co/x7z1m2r/33627cbc-06de-41fd-9293-974d5bf238d1-1.jpg"
                 alt="panchera"
               />
@@ -21,11 +21,11 @@ export const Preview: React.FC = () => {
             <p>$37900</p>
           </div>
         </div>
-        <div className="w-1/3 border border-gray-200 ">
+        <div className="w-1/3">
           <div className="w-full p-4">
-            <div className="object-contain h-2/3">
+            <div className="object-contain h-2/3 border border-gray-300 rounded-md">
               <img
-                className="h-full w-full"
+                className="h-full w-full rounded-md"
                 src="https://i.ibb.co/MMBBYf3/carro-ambulante-para-perritos-calientes-2194761z0-00000067.jpg"
                 alt="panchera"
               />
@@ -34,11 +34,11 @@ export const Preview: React.FC = () => {
             <p>$37900</p>
           </div>
         </div>
-        <div className="w-1/3 border border-gray-200 ">
+        <div className="w-1/3">
           <div className="w-full p-4">
-            <div className="object-contain h-2/3">
+            <div className="object-contain h-2/3 border border-gray-300 rounded-md">
               <img
-                className="h-full w-full"
+                className="h-full w-full rounded-md"
                 src="https://i.ibb.co/cYJ1fNx/panchera2.jpg"
                 alt="panchera"
               />

@@ -12,7 +12,9 @@ export const Hero: React.FC = () => {
           <li>Quienes Somos</li>
         </ul>
       </NavBar>
-      <img src="https://i.ibb.co/x1yCxFV/hero-image.jpg" alt="hero-image" />
+      <div className="lg:max-w-[1920px]">
+        <img src="https://i.ibb.co/x1yCxFV/hero-image.jpg" alt="hero-image" />
+      </div>
     </>
   );
 };
