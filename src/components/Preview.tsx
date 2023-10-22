@@ -4,13 +4,13 @@ export const Preview: React.FC = () => {
       <h2 className="py-8 text-center text-gray-800 text-3xl font-bold">
         - Nuestros Productos (Envíos AMBA e interior) -
       </h2>
-      <div className="flex">
-        <div className="w-1/3">
-          <div className="w-full p-4">
-            <div className="object-contain h-2/3 border border-gray-300 rounded-md">
+      <div className="flex w-full h-[400px]">
+        <div className="w-1/3 h-full bg-gray-100 border border-gray-300 rounded-md">
+          <div className="w-full h-5/6">
+            <div className="h-full object-contain">
               <img
-                className="h-full w-full rounded-md"
-                src="https://i.ibb.co/x7z1m2r/33627cbc-06de-41fd-9293-974d5bf238d1-1.jpg"
+                className="h-full w-full rounded-tl-md rounded-tr-md"
+                src="https://i.ibb.co/SPSCpFJ/glpanchera5.webp"
                 alt="panchera"
               />
             </div>
@@ -21,12 +21,12 @@ export const Preview: React.FC = () => {
             <p>$37900</p>
           </div>
         </div>
-        <div className="w-1/3">
-          <div className="w-full p-4">
-            <div className="object-contain h-2/3 border border-gray-300 rounded-md">
+        <div className="w-1/3 h-full bg-gray-100 border border-gray-300 rounded-md">
+          <div className="w-full h-5/6">
+            <div className="h-full object-contain">
               <img
-                className="h-full w-full rounded-md"
-                src="https://i.ibb.co/MMBBYf3/carro-ambulante-para-perritos-calientes-2194761z0-00000067.jpg"
+                className="h-full w-full rounded-tl-md rounded-tr-md"
+                src="https://i.ibb.co/yP1ttJs/glpanchera4-1.webp"
                 alt="panchera"
               />
             </div>
@@ -34,17 +34,33 @@ export const Preview: React.FC = () => {
             <p>$37900</p>
           </div>
         </div>
-        <div className="w-1/3">
-          <div className="w-full p-4">
-            <div className="object-contain h-2/3 border border-gray-300 rounded-md">
+        <div className="w-1/3 h-full bg-gray-100 border border-gray-300 rounded-md">
+          <div className="w-full h-5/6">
+            <div className="h-full object-contain">
               <img
-                className="h-full w-full rounded-md"
-                src="https://i.ibb.co/cYJ1fNx/panchera2.jpg"
+                className="h-full w-full rounded-tl-md rounded-tr-md"
+                src="https://i.ibb.co/WHjx0cH/glpanchera3-1.webp"
                 alt="panchera"
               />
             </div>
             <h4>Mueble y/o Carro panchero categoría II / Con toldo</h4>
             <p>$250000</p>
+          </div>
+        </div>
+        <div className="w-1/3 h-full bg-gray-100 border border-gray-300 rounded-md">
+          <div className="w-full h-5/6">
+            <div className="h-full object-contain">
+              <img
+                className="h-full w-full rounded-tl-md rounded-tr-md"
+                src="https://i.ibb.co/yQwkv85/glpanchera2.webp"
+                alt="panchera"
+              />
+            </div>
+            <h4>
+              Panchera con bandeja calienta pan SP20 ELECTRICA 20 superpanchos
+              Bajo consumo
+            </h4>
+            <p>$37900</p>
           </div>
         </div>
       </div>
