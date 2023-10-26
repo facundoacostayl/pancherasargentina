@@ -1,7 +1,7 @@
 export const Preview: React.FC = () => {
   return (
     <div>
-      <h2 className="py-8 text-center text-gray-800 text-3xl font-bold">
+      <h2 className="py-8 text-center text-gray-700 text-3xl font-bold">
         - Nuestros Productos (Envíos AMBA e interior) -
       </h2>
       <div className="flex gap-4 justify-between w-full">
@@ -32,6 +32,11 @@ export const Preview: React.FC = () => {
             src="https://i.ibb.co/3czhfwt/pancherasp2014.webp"
             alt="panchera"
           />
+        </div>
+      </div>
+      <div className="py-7">
+        <div className="m-auto w-[150px] cursor-pointer transition-[.2s] hover:bg-blue-800 bg-blue-500 rounded-md text-center font-medium text-white text-xl">
+          <div className="">Ver Todo</div>
         </div>
       </div>
     </div>
