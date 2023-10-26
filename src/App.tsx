@@ -8,8 +8,8 @@ function App() {
       <Top></Top>
       <div className="border border-gray-100 rounded-md">
         <Hero></Hero>
-        <Preview></Preview>
       </div>
+      <Preview></Preview>
     </div>
   );
 }
