@@ -1,6 +1,7 @@
 import { Top } from "../src/components/Top";
 import { Hero } from "../src/components/Hero";
 import { Preview } from "../src/components/Preview";
+import { Shipping } from "../src/components/Shipping";
 
 function App() {
   return (
@@ -10,6 +11,8 @@ function App() {
         <Hero></Hero>
       </div>
       <Preview></Preview>
+      <Shipping></Shipping>
+      <Shipping></Shipping>
     </div>
   );
 }
