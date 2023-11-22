@@ -1,7 +1,7 @@
 export const Shipping: React.FC = () => {
   return (
-    <div>
-      <h2 className="py-8 text-center text-gray-700 text-3xl font-bold">
+    <div className="py-8">
+      <h2 className="pb-8 text-center text-gray-700 text-3xl font-bold">
         - Comprá con seguridad -
       </h2>
       <div className="w-full flex justify-between gap-5">
