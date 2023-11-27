@@ -1,7 +1,7 @@
 export const Preview: React.FC = () => {
   return (
     <div>
-      <h2 className="py-8 text-center text-gray-700 text-2xl lg:text-3xl font-bold">
+      <h2 className="py-8 px-2 lg:px-0 text-center text-gray-700 text-2xl lg:text-3xl font-bold">
         - Nuestros Productos (Envíos AMBA e interior) -
       </h2>
       <div className="w-full grid grid-cols-2 gap-2 px-2 lg:px-0 lg:flex lg:gap-4 lg:justify-between">

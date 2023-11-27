@@ -1,10 +1,10 @@
 export const Shipping: React.FC = () => {
   return (
-    <div className="py-8">
-      <h2 className="pb-8 text-center text-gray-700 text-3xl font-bold">
+    <div className="py-4 pb-5">
+      <h2 className="pb-8 text-center text-gray-700 text-2xl lg:text-3xl font-bold">
         - Comprá con seguridad -
       </h2>
-      <div className="w-full flex justify-between gap-5">
+      <div className="w-full flex flex-col lg:flex-row justify-between gap-5 px-2 lg:px-0">
         <div className="rounded-md h-52 w-full relative background-">
           <img
             className="h-full w-full rounded-md"
@@ -32,7 +32,7 @@ export const Shipping: React.FC = () => {
             <h3 className="mb-3 text-white font-bold text-4xl">
               Envíos a todo el país
             </h3>
-            <h3 className="mb-3 text-white font-semibold text-xl">
+            <h3 className="px-2 lg:px-0 mb-3 text-white font-semibold text-xl">
               O retirá en nuestra fábrica en Castelar, GBA
             </h3>
           </div>
