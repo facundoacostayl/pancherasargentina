@@ -20,7 +20,7 @@ export const Hero: React.FC = () => {
         />
         <img
           className="lg:hidden"
-          src="https://i.ibb.co/gSBCxCT/hero-mobile.webp"
+          src="https://i.ibb.co/N7GtrSz/hero-mobile-1.webp"
           alt="hero-image"
         />
       </div>
