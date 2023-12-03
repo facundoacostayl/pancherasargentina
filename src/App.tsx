@@ -1,3 +1,4 @@
+import { ShoppingCart } from "./components/ShoppingCart";
 import { Top } from "../src/components/Top";
 import { Hero } from "../src/components/Hero";
 import { Preview } from "../src/components/Preview";
@@ -7,6 +8,7 @@ import { Footer } from "../src/components/Footer";
 function App() {
   return (
     <div className="">
+      <ShoppingCart></ShoppingCart>
       <div className="app">
         <Top></Top>
         <div className="border border-gray-100 rounded-md">
