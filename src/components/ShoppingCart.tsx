@@ -5,10 +5,10 @@ export const ShoppingCart = () => {
         <span className="fixed right-7 top-7 text-2xl font-semibold cursor-pointer transition ease-in-out duration-200 hover:text-gray-400">
           X
         </span>
-        <h2 className="border-b border-gray-200 py-5 text-center text-3xl lg:text-4xl font-semibold">
+        <h2 className="border-b border-gray-200 py-5 text-center text-3xl text-gray-600 lg:text-4xl font-semibold">
           Tus Productos
         </h2>
-        <ul className="overflow-y-scroll py-8 border-b-8 border-black">
+        <ul className="overflow-y-scroll py-8 border-b-8 border-blue-300">
           <li className="lg:px-2 pb-7">
             <div className="flex justify-between">
               <div className="w-full flex items-center gap-2">
@@ -24,7 +24,7 @@ export const ShoppingCart = () => {
                 </div>
 
                 <div className="">
-                  <h4 className="text-base lg:text-xl whitespace-nowrap">
+                  <h4 className="text-base text-gray-600 lg:text-xl whitespace-nowrap">
                     Nombre Producto
                   </h4>
                   <p className="text-gray-500 text-lg">Cantidad</p>
@@ -52,7 +52,7 @@ export const ShoppingCart = () => {
                 </div>
 
                 <div className="">
-                  <h4 className="text-base lg:text-xl whitespace-nowrap">
+                  <h4 className="text-base text-gray-600 lg:text-xl whitespace-nowrap">
                     Nombre Producto
                   </h4>
                   <p className="text-gray-500 text-lg">Cantidad</p>
@@ -67,16 +67,18 @@ export const ShoppingCart = () => {
           </li>
         </ul>
         <div className="py-2 flex justify-evenly items-center">
-          <p className="text-base lg:text-lg font-semibold">Subtotal:</p>
-          <p className="text-xl lg:text-2xl text-gray-500 font-semibold">
+          <p className="text-base text-gray-600 lg:text-lg font-semibold">
+            Subtotal:
+          </p>
+          <p className="text-xl lg:text-2xl text-gray-400 font-semibold">
             $45000.00
           </p>
         </div>
         <div className="py-10 flex flex-col items-center justify-center gap-5">
-          <p className="font-semibold text-base lg:text-lg cursor-pointer transition ease-in-out duration-200 hover:text-gray-400">
+          <p className="font-semibold text-base text-gray-600 lg:text-lg cursor-pointer transition ease-in-out duration-200 hover:text-gray-400">
             VOLVER A LA TIENDA
           </p>
-          <p className="p-3 font-semibold text-base lg:text-lg text-white border-2 border-black rounded-full bg-black cursor-pointer transition ease-in-out duration-200 hover:text-black hover:bg-white">
+          <p className="p-3 font-semibold text-base lg:text-lg text-white border-2 border-blue-300 rounded-full bg-blue-300 cursor-pointer transition ease-in-out duration-200 hover:text-blue-300 hover:bg-white">
             Finalizar Compra
           </p>
         </div>
