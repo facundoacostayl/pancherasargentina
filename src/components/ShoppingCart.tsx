@@ -22,7 +22,10 @@ export const ShoppingCart = () => {
         } w-4/5 lg:w-3/12 h-full z-50 top-0 right-0 bg-white border border-gray-500`}
       >
         <div className="relative w-full py-16 px-3">
-          <span className="fixed right-7 top-7 text-2xl text-gray-600 font-semibold cursor-pointer transition ease-in-out duration-200 hover:text-gray-400">
+          <span
+            onClick={() => toggleCart()}
+            className="fixed right-7 top-7 text-2xl text-gray-600 font-semibold cursor-pointer transition ease-in-out duration-200 hover:text-gray-400"
+          >
             X
           </span>
           <h2 className="border-b border-gray-200 py-5 text-center text-3xl text-gray-600 lg:text-4xl font-semibold">
@@ -95,7 +98,10 @@ export const ShoppingCart = () => {
             </p>
           </div>
           <div className="py-10 flex flex-col items-center justify-center gap-5">
-            <p className="font-semibold text-base text-gray-600 lg:text-lg cursor-pointer transition ease-in-out duration-200 hover:text-gray-400">
+            <p
+              onClick={() => toggleCart()}
+              className="font-semibold text-base text-gray-600 lg:text-lg cursor-pointer transition ease-in-out duration-200 hover:text-gray-400"
+            >
               VOLVER A LA TIENDA
             </p>
             <p className="p-3 font-semibold text-base lg:text-lg text-white border-2 border-blue-300 rounded-full bg-blue-300 cursor-pointer transition ease-in-out duration-200 hover:text-blue-300 hover:bg-white">
