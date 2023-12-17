@@ -1,29 +1,24 @@
-//React
-import { useState } from "react";
+import { useShoppingCart } from "../shoppingCartContext/ShoppingCartProvider";
 
 //UI
 import { Overlay } from "../ui/overlay";
 
 export const ShoppingCart = () => {
-  const [CartState, UseCartState] = useState(true);
-
-  const toggleCart = () => {
-    UseCartState(!CartState);
-  };
+  const { shoppingCartState, toggleShoppingCart } = useShoppingCart();
 
   return (
     <div
-      className={`${CartState ? "fixed" : "hidden"}
+      className={`${shoppingCartState ? "fixed" : "hidden"}
     `}
     >
       <div
         className={`${
-          CartState ? "fixed" : "hidden"
+          shoppingCartState ? "fixed" : "hidden"
         } w-4/5 lg:w-3/12 h-full z-50 top-0 right-0 bg-white border border-gray-500`}
       >
         <div className="relative w-full py-16 px-3">
           <span
-            onClick={() => toggleCart()}
+            onClick={() => toggleShoppingCart()}
             className="fixed right-7 top-7 text-2xl text-gray-600 font-semibold cursor-pointer transition ease-in-out duration-200 hover:text-gray-400"
           >
             X
@@ -99,7 +94,7 @@ export const ShoppingCart = () => {
           </div>
           <div className="py-10 flex flex-col items-center justify-center gap-5">
             <p
-              onClick={() => toggleCart()}
+              onClick={() => toggleShoppingCart()}
               className="font-semibold text-base text-gray-600 lg:text-lg cursor-pointer transition ease-in-out duration-200 hover:text-gray-400"
             >
               VOLVER A LA TIENDA
@@ -110,7 +105,7 @@ export const ShoppingCart = () => {
           </div>
         </div>
       </div>
-      <Overlay onDisplayCart={() => toggleCart()}></Overlay>
+      <Overlay onDisplayCart={() => toggleShoppingCart()}></Overlay>
     </div>
   );
 };

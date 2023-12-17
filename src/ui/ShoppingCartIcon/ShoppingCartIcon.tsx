@@ -1,9 +1,16 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
+import { useShoppingCart } from "../../shoppingCartContext/ShoppingCartProvider";
+
 export const ShoppingCartIcon: React.FC = () => {
+  const { toggleShoppingCart } = useShoppingCart();
+
   return (
-    <div className="w-[65px] h-[45px]">
+    <div
+      onClick={() => toggleShoppingCart()}
+      className="w-[65px] h-[45px] cursor-pointer"
+    >
       <div className="w-full h-full flex justify-center items-center rounded-md">
         <div className="flex items-center justify-center w-full h-full bg-orange-500 rounded-l-md">
           <FontAwesomeIcon
