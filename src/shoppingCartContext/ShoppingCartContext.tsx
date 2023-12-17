@@ -1,8 +1,9 @@
 import { createContext } from "react";
+import { Product } from "./types";
 
 type ShoppingCartContextProps = {
-  toggleShoppingCart: boolean;
-  loadProducts: VoidFunction;
+  toggleShoppingCart: VoidFunction;
+  productList: Product[];
 };
 
 export const ShoppingCartContext = createContext<ShoppingCartContextProps>(
