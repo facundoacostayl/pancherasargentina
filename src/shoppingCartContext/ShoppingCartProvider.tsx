@@ -26,6 +26,7 @@ export const ShoppingCartProvider = ({ children }: Props) => {
   };
 
   const values = {
+    shoppingCartState,
     toggleShoppingCart,
     productList,
   };

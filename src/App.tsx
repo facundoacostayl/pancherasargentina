@@ -1,9 +1,17 @@
+//Pages
 import { Home } from "../src/pages/Home";
+import { Shop } from "./pages/Shop";
+
+//React Router
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <>
-      <Home></Home>
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/shop" element={<Shop />}></Route>
+      </Routes>
     </>
   );
 }
