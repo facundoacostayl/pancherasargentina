@@ -7,19 +7,16 @@ export const ShoppingCart = () => {
   const { shoppingCartState, toggleShoppingCart } = useShoppingCart();
 
   return (
-    <div
-      className={`${shoppingCartState ? "fixed" : "hidden"}
-    `}
-    >
+    <div>
       <div
         className={`${
-          shoppingCartState ? "fixed" : "hidden"
-        } w-4/5 lg:w-3/12 h-full z-50 top-0 right-0 bg-white border border-gray-500`}
+          shoppingCartState ? "top-0 right-0" : "top-0 -right-full"
+        } fixed w-4/5 lg:w-3/12 h-full z-50 bg-white border border-gray-500 transition-all duration-[400ms]`}
       >
         <div className="relative w-full py-16 px-3">
           <span
             onClick={() => toggleShoppingCart()}
-            className="fixed right-7 top-7 text-2xl text-gray-600 font-semibold cursor-pointer transition ease-in-out duration-200 hover:text-gray-400"
+            className="absolute right-7 top-7 text-2xl text-gray-600 font-semibold cursor-pointer transition ease-in-out duration-200 hover:text-gray-400"
           >
             X
           </span>
@@ -105,7 +102,10 @@ export const ShoppingCart = () => {
           </div>
         </div>
       </div>
-      <Overlay onDisplayCart={() => toggleShoppingCart()}></Overlay>
+      <Overlay
+        shoppingCartState={shoppingCartState}
+        onDisplayCart={() => toggleShoppingCart()}
+      ></Overlay>
     </div>
   );
 };

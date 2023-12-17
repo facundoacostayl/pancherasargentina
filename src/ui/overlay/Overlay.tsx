@@ -1,12 +1,18 @@
 type Props = {
   onDisplayCart: VoidFunction;
+  shoppingCartState: boolean;
 };
 
-export const Overlay: React.FC<Props> = ({ onDisplayCart }) => {
+export const Overlay: React.FC<Props> = ({
+  onDisplayCart,
+  shoppingCartState,
+}) => {
   return (
     <div
       onClick={onDisplayCart}
-      className="w-[200vw] h-[200vh] fixed top-0 left-0 bottom-0 right-0 m-auto z-40 transition opacity duration-100 delay-[0.2s] bg-black/25"
+      className={`${
+        shoppingCartState ? "fixed" : "hidden"
+      } w-[200vw] h-[200vh] top-0 left-0 bottom-0 right-0 m-auto z-40 bg-black/25`}
     ></div>
   );
 };
