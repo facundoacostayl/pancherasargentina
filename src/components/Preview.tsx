@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export const Preview: React.FC = () => {
   return (
     <div>
@@ -36,7 +38,9 @@ export const Preview: React.FC = () => {
       </div>
       <div className="py-7">
         <div className="m-auto w-[150px] cursor-pointer transition-[.2s] hover:bg-blue-800 bg-blue-500 rounded-md text-center font-medium text-white text-xl">
-          <div className="">Ver Todo</div>
+          <div className="">
+            <Link to="/shop">Ver Todo</Link>
+          </div>
         </div>
       </div>
     </div>

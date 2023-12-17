@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 
+import { Link } from "react-router-dom";
+
 export const Footer: React.FC = () => {
   return (
     <div className="w-full">
@@ -12,11 +14,21 @@ export const Footer: React.FC = () => {
       <div className="bg-slate-200">
         <div className="">
           <ul className="flex flex-col gap-3 py-5 text-center text-lg border-b border-gray-950">
-            <li>Inicio</li>
-            <li>Pancheras</li>
-            <li>Carros Pancheros</li>
-            <li>Contacto</li>
-            <li>Quienes Somos</li>
+            <li>
+              <Link to="/">Inicio</Link>
+            </li>
+            <li>
+              <Link to="/shop">Pancheras</Link>
+            </li>
+            <li>
+              <Link to="/shop">Carros Pancheros</Link>
+            </li>
+            <li>
+              <Link to="/contacto">Contacto</Link>
+            </li>
+            <li>
+              <Link to="/about">Sobre Nosotros</Link>
+            </li>
           </ul>
           <div className="py-5 text-gray-800 text-md font-medium flex flex-col items-center gap-3">
             <p>
