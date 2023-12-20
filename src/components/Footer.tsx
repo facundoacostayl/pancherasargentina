@@ -18,10 +18,10 @@ export const Footer: React.FC = () => {
               <Link to="/">Inicio</Link>
             </li>
             <li>
-              <Link to="/shop">Pancheras</Link>
+              <Link to="/pancheras">Pancheras</Link>
             </li>
             <li>
-              <Link to="/shop">Carros Pancheros</Link>
+              <Link to="/carros-pancheros">Carros Pancheros</Link>
             </li>
             <li>
               <Link to="/contacto">Contacto</Link>
