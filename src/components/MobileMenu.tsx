@@ -21,7 +21,7 @@ export const MobileMenu = () => {
         </span>
         <div className="py-14">
           <h3 className="p-2 mb-5 text-2xl text-gray-800 font-medium">Menú</h3>
-          <ul className="text-lg">
+          <ul onClick={() => toggleMobileMenu()} className="text-lg">
             <li className="border-t border-gray-200 p-3">
               <Link to="/">Inicio</Link>
             </li>
