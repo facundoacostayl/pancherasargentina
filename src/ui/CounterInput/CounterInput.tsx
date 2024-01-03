@@ -1,6 +1,6 @@
 export const CounterInput = () => {
   return (
-    <form className="w-full mx-auto">
+    <form className="w-full lg:w-1/4 mx-auto lg:mx-0">
       <label
         htmlFor="quantity-input"
         className="block mb-2 text-sm font-medium text-gray-500"
@@ -62,9 +62,6 @@ export const CounterInput = () => {
           </svg>
         </button>
       </div>
-      <p id="helper-text-explanation" className="mt-2 text-sm text-gray-500">
-        Por favor, seleccione un número de unidades de entre 1 y 5.
-      </p>
     </form>
   );
 };
