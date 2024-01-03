@@ -1,11 +1,22 @@
+import { useMobileMenu } from "../mobileMenuContext/MobileMenuProvider";
+
 import { Logo } from "../ui/logo";
 import { Link } from "react-router-dom";
 
 export const MobileMenu = () => {
+  const { mobileMenuState, toggleMobileMenu } = useMobileMenu();
+
   return (
-    <div className="lg:hidden fixed w-full h-full top-0 left-0 bg-white">
+    <div
+      className={`${
+        mobileMenuState ? "top-0 left-0" : "top-0 -left-full"
+      } lg:hidden fixed w-full h-full bg-white transition-all duration-[400ms]`}
+    >
       <div className="">
-        <span className="absolute right-7 top-7 text-2xl text-gray-600 font-semibold cursor-pointer transition ease-in-out duration-200 hover:text-gray-400">
+        <span
+          onClick={() => toggleMobileMenu()}
+          className="absolute right-7 top-7 text-2xl text-gray-600 font-semibold cursor-pointer transition ease-in-out duration-200 hover:text-gray-400"
+        >
           X
         </span>
         <div className="py-14">
