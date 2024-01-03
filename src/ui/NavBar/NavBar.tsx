@@ -18,7 +18,7 @@ export const NavBar: React.FC = () => {
             <Link to="/contacto">Contacto</Link>
           </li>
           <li>
-            <Link to="/about">Sobre Nosotros</Link>
+            <Link to="/sobre-nosotros">Sobre Nosotros</Link>
           </li>
         </ul>
       </div>

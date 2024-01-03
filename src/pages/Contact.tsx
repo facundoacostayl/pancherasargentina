@@ -17,7 +17,7 @@ export const Contact = () => {
             <h2 className="mb-4 text-4xl font-bold text-center text-blue-500">
               Contactanos
             </h2>
-            <p className="mb-8 lg:mb-16 font-light text-center text-gray-500 sm:text-xl">
+            <p className="mb-8 lg:mb-16 font-light text-center text-gray-600 sm:text-xl">
               ¿Tenés alguna duda? Envianos un mail mediante el siguiente
               formulario y te responderemos a la brevedad. También podés
               comunicarte vía WhatsApp, cuyo número está ubicado en la parte
@@ -68,12 +68,14 @@ export const Contact = () => {
                   placeholder="Escribí tu mensaje..."
                 ></textarea>
               </div>
-              <button
-                type="submit"
-                className="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-              >
-                Send message
-              </button>
+              <div className="flex">
+                <button
+                  type="submit"
+                  className="m-auto py-3 px-5 text-sm font-medium text-center text-gray-500 border border-gray-300 rounded-lg sm:w-fit hover:text-white hover:bg-gray-400 duration-200"
+                >
+                  Enviar
+                </button>
+              </div>
             </form>
           </div>
         </section>

@@ -13,7 +13,6 @@ export const ProductList = () => {
       </h2>
       <div className="p-2">
         <ul className="lg:grid lg:grid-cols-4 gap-2">
-          (productList.map...)
           <ProductCard></ProductCard>
           <ProductCard></ProductCard>
           <ProductCard></ProductCard>
