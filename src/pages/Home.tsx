@@ -1,5 +1,6 @@
 //COMPONENTS
 import { ShoppingCart } from "../components/ShoppingCart";
+import { MobileMenu } from "../components/MobileMenu";
 import { Top } from "../components/Top";
 import { Hero } from "../components/Hero";
 import { Preview } from "../components/Preview";
@@ -11,6 +12,7 @@ export const Home = () => {
   return (
     <div className="">
       <ShoppingCart></ShoppingCart>
+      <MobileMenu></MobileMenu>
       <div className="app">
         <Top></Top>
         <div className="border border-gray-100 rounded-md">
