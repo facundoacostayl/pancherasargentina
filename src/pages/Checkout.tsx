@@ -8,9 +8,15 @@ import { Footer } from "../components/Footer";
 
 export const Checkout = () => {
   const [readyToPayState, setReadyToPay] = useState<boolean>(false);
+  const [payWithShippingState, setPayWithShippingState] =
+    useState<boolean>(false);
 
   const getReadyToPay = () => {
     setReadyToPay(!readyToPayState);
+  };
+
+  const togglePayWithShipping = (bool: boolean) => {
+    setPayWithShippingState(bool);
   };
 
   return (
@@ -175,11 +181,11 @@ export const Checkout = () => {
               <form className="mt-5 grid gap-6">
                 <div className="relative">
                   <input
+                    onClick={() => togglePayWithShipping(true)}
                     className="peer hidden"
                     id="radio_1"
                     type="radio"
                     name="radio"
-                    checked
                   />
                   <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
                   <label
@@ -203,11 +209,11 @@ export const Checkout = () => {
                 </div>
                 <div className="relative">
                   <input
+                    onClick={() => togglePayWithShipping(false)}
                     className="peer hidden"
                     id="radio_2"
                     type="radio"
                     name="radio"
-                    checked
                   />
                   <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
                   <label
@@ -291,39 +297,48 @@ export const Checkout = () => {
                   />
                 </div>
               </div>
-              <label
-                htmlFor="billing-address"
-                className="mt-4 mb-2 block text-sm text-gray-700 font-medium"
+              <div
+                className={`${
+                  payWithShippingState
+                    ? "opacity-100"
+                    : "opacity-25 pointer-events-none"
+                } transition-all duration-300`}
               >
-                A dónde lo enviamos?
-              </label>
-              <div className="flex flex-col sm:flex-row">
-                <div className="relative flex-shrink-0 sm:w-7/12">
+                <label
+                  htmlFor="billing-address"
+                  className="mt-4 mb-2 block text-sm text-gray-700 font-medium"
+                >
+                  A dónde lo enviamos?
+                </label>
+
+                <div className="flex flex-col sm:flex-row">
+                  <div className="relative flex-shrink-0 sm:w-7/12">
+                    <input
+                      type="text"
+                      id="billing-address"
+                      name="billing-address"
+                      className="w-full rounded-md border border-gray-200 px-4 py-3 pl-5 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                      placeholder="Tu Dirección"
+                    />
+                  </div>
                   <input
                     type="text"
-                    id="billing-address"
-                    name="billing-address"
-                    className="w-full rounded-md border border-gray-200 px-4 py-3 pl-5 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
-                    placeholder="Tu Dirección"
+                    name="billing-zip"
+                    className="flex-shrink-0 rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none sm:w-1/6 focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                    placeholder="Timbre"
                   />
+                  <select
+                    itemType="text"
+                    name="billing-state"
+                    className="w-full rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                  >
+                    <option value="Localidad">-- Localidad --</option>
+                    <option value="Localidad">CABA</option>
+                    <option value="Localidad">GBA</option>
+                    <option value="Localidad">Buenos Aires</option>
+                    <option value="Localidad">Interior</option>
+                  </select>
                 </div>
-                <input
-                  type="text"
-                  name="billing-zip"
-                  className="flex-shrink-0 rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none sm:w-1/6 focus:z-10 focus:border-blue-500 focus:ring-blue-500"
-                  placeholder="Timbre"
-                />
-                <select
-                  itemType="text"
-                  name="billing-state"
-                  className="w-full rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
-                >
-                  <option value="Localidad">-- Localidad --</option>
-                  <option value="Localidad">CABA</option>
-                  <option value="Localidad">GBA</option>
-                  <option value="Localidad">Buenos Aires</option>
-                  <option value="Localidad">Interior</option>
-                </select>
               </div>
 
               <div className="mt-6 border-t border-b py-2">
