@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { ShoppingCart } from "../components/ShoppingCart";
 import { MobileMenu } from "../components/MobileMenu";
 import { Top } from "../components/Top";
@@ -5,6 +7,12 @@ import { NavBar } from "../ui/NavBar";
 import { Footer } from "../components/Footer";
 
 export const Checkout = () => {
+  const [readyToPayState, setReadyToPay] = useState<boolean>(false);
+
+  const getReadyToPay = () => {
+    setReadyToPay(!readyToPayState);
+  };
+
   return (
     <div className="">
       <ShoppingCart></ShoppingCart>
@@ -133,67 +141,75 @@ export const Checkout = () => {
               </div>
             </div>
 
-            <p className="mt-8 text-lg text-gray-700 font-medium">
-              Tipo de entrega
-            </p>
-            <form className="mt-5 grid gap-6">
-              <div className="relative">
-                <input
-                  className="peer hidden"
-                  id="radio_1"
-                  type="radio"
-                  name="radio"
-                  checked
-                />
-                <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
-                <label
-                  className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4"
-                  htmlFor="radio_1"
-                >
-                  <img
-                    className="w-14 object-contain"
-                    src="/images/naorrAeygcJzX0SyNI4Y0.png"
-                    alt=""
+            <div
+              className={`${
+                !readyToPayState
+                  ? "opacity-100"
+                  : "opacity-25 pointer-events-none"
+              } transition-all duration-300`}
+            >
+              <p className="mt-8 text-lg text-gray-700 font-medium">
+                Tipo de entrega
+              </p>
+              <form className="mt-5 grid gap-6">
+                <div className="relative">
+                  <input
+                    className="peer hidden"
+                    id="radio_1"
+                    type="radio"
+                    name="radio"
+                    checked
                   />
-                  <div className="ml-5">
-                    <span className="mt-2 text-gray-700 font-semibold">
-                      Envío por Correo
-                    </span>
-                    <p className="text-slate-500 text-sm leading-6">
-                      Entrega: 2-4 Days
-                    </p>
-                  </div>
-                </label>
-              </div>
-              <div className="relative">
-                <input
-                  className="peer hidden"
-                  id="radio_2"
-                  type="radio"
-                  name="radio"
-                  checked
-                />
-                <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
-                <label
-                  className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4"
-                  htmlFor="radio_2"
-                >
-                  <img
-                    className="w-14 object-contain"
-                    src="/images/oG8xsl3xsOkwkMsrLGKM4.png"
-                    alt=""
+                  <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
+                  <label
+                    className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4"
+                    htmlFor="radio_1"
+                  >
+                    <img
+                      className="w-14 object-contain"
+                      src="/images/naorrAeygcJzX0SyNI4Y0.png"
+                      alt=""
+                    />
+                    <div className="ml-5">
+                      <span className="mt-2 text-gray-700 font-semibold">
+                        Envío por Correo
+                      </span>
+                      <p className="text-slate-500 text-sm leading-6">
+                        Entrega: 2-4 Days
+                      </p>
+                    </div>
+                  </label>
+                </div>
+                <div className="relative">
+                  <input
+                    className="peer hidden"
+                    id="radio_2"
+                    type="radio"
+                    name="radio"
+                    checked
                   />
-                  <div className="ml-5">
-                    <span className="mt-2 text-gray-700 font-semibold">
-                      Retiro en Fábrica (Castelar, GBA)
-                    </span>
-                    <p className="text-slate-500 text-sm leading-6">
-                      Entrega: 2-4 Days
-                    </p>
-                  </div>
-                </label>
-              </div>
-            </form>
+                  <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
+                  <label
+                    className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4"
+                    htmlFor="radio_2"
+                  >
+                    <img
+                      className="w-14 object-contain"
+                      src="/images/oG8xsl3xsOkwkMsrLGKM4.png"
+                      alt=""
+                    />
+                    <div className="ml-5">
+                      <span className="mt-2 text-gray-700 font-semibold">
+                        Retiro en Fábrica (Castelar, GBA)
+                      </span>
+                      <p className="text-slate-500 text-sm leading-6">
+                        Entrega: 2-4 Days
+                      </p>
+                    </div>
+                  </label>
+                </div>
+              </form>
+            </div>
           </div>
           <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0">
             <p className="text-xl text-gray-700 font-medium">
@@ -300,7 +316,10 @@ export const Checkout = () => {
                 <p className="text-2xl font-semibold text-gray-700">$408.00</p>
               </div>
             </div>
-            <button className="mt-4 mb-8 w-full rounded-md px-6 py-3 font-medium bg-gray-500 text-white border border-gray-300 hover:text-white hover:bg-gray-400 duration-200">
+            <button
+              onClick={() => getReadyToPay()}
+              className="mt-4 mb-8 w-full rounded-md px-6 py-3 font-medium bg-gray-500 text-white border border-gray-300 hover:text-white hover:bg-gray-400 duration-200"
+            >
               Continuar para el Pago
             </button>
           </div>
