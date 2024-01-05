@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+import { SpinnerCircularFixed } from "spinners-react";
 
 import { ShoppingCart } from "../components/ShoppingCart";
 import { MobileMenu } from "../components/MobileMenu";
@@ -10,9 +12,17 @@ export const Checkout = () => {
   const [readyToPayState, setReadyToPay] = useState<boolean>(false);
   const [payWithShippingState, setPayWithShippingState] =
     useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    setLoading(false);
+  }, [readyToPayState]);
 
   const getReadyToPay = () => {
-    setReadyToPay(!readyToPayState);
+    setLoading(true);
+    setTimeout(() => {
+      setReadyToPay(!readyToPayState);
+    }, 2000);
   };
 
   const togglePayWithShipping = (bool: boolean) => {
@@ -238,122 +248,212 @@ export const Checkout = () => {
               </form>
             </div>
           </div>
-          <div
-            className={`${
-              readyToPayState && "hidden"
-            } mt-10 bg-gray-50 px-4 pt-8 lg:mt-0 transition-all duration-300`}
-          >
-            <p className="text-xl text-gray-700 font-medium">
-              Información del Cliente
-            </p>
-            <p className="text-gray-400">
-              Finalizá la orden completando los siguientes datos.
-            </p>
-            <div className="">
-              <label
-                htmlFor="email"
-                className="mt-4 mb-2 block text-sm text-gray-700 font-medium"
-              >
-                Tu E-mail
-              </label>
-              <div className="relative">
-                <input
-                  type="text"
-                  id="email"
-                  name="email"
-                  className="w-full rounded-md border border-gray-200 px-4 py-3 pl-5 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
-                  placeholder="tucorreo@gmail.com"
-                />
-              </div>
-              <label
-                htmlFor="card-holder"
-                className="mt-4 mb-2 block text-sm text-gray-700 font-medium"
-              >
-                Tu Nombre
-              </label>
-              <div className="relative">
-                <input
-                  type="text"
-                  id="card-holder"
-                  name="card-holder"
-                  className="w-full rounded-md border border-gray-200 px-4 py-3 pl-5 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
-                  placeholder="Tu nombre completo"
-                />
-              </div>
-              <label
-                htmlFor="card-no"
-                className="mt-4 mb-2 block text-sm text-gray-700 font-medium"
-              >
-                Teléfono de Contacto
-              </label>
-              <div className="flex">
-                <div className="relative w-7/12 flex-shrink-0">
+          <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0">
+            <div
+              className={`${readyToPayState && "hidden"} ${
+                loading && "opacity-25"
+              } transition-all duration-300`}
+            >
+              <p className="text-xl text-gray-700 font-medium">
+                Información del Cliente
+              </p>
+              <p className="text-gray-400">
+                Finalizá la orden completando los siguientes datos.
+              </p>
+              <div className="">
+                <label
+                  htmlFor="email"
+                  className="mt-4 mb-2 block text-sm text-gray-700 font-medium"
+                >
+                  Tu E-mail
+                </label>
+                <div className="relative">
                   <input
                     type="text"
-                    id="card-no"
-                    name="card-no"
-                    className="w-full rounded-md border border-gray-200 px-2 py-3 pl-5 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
-                    placeholder="01175872145"
+                    id="email"
+                    name="email"
+                    className="w-full rounded-md border border-gray-200 px-4 py-3 pl-5 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                    placeholder="tucorreo@gmail.com"
                   />
                 </div>
+                <label
+                  htmlFor="card-holder"
+                  className="mt-4 mb-2 block text-sm text-gray-700 font-medium"
+                >
+                  Tu Nombre
+                </label>
+                <div className="relative">
+                  <input
+                    type="text"
+                    id="card-holder"
+                    name="card-holder"
+                    className="w-full rounded-md border border-gray-200 px-4 py-3 pl-5 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                    placeholder="Tu nombre completo"
+                  />
+                </div>
+                <label
+                  htmlFor="card-no"
+                  className="mt-4 mb-2 block text-sm text-gray-700 font-medium"
+                >
+                  Teléfono de Contacto
+                </label>
+                <div className="flex">
+                  <div className="relative w-7/12 flex-shrink-0">
+                    <input
+                      type="text"
+                      id="card-no"
+                      name="card-no"
+                      className="w-full rounded-md border border-gray-200 px-2 py-3 pl-5 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                      placeholder="01175872145"
+                    />
+                  </div>
+                </div>
+                <div
+                  className={`${
+                    payWithShippingState
+                      ? "opacity-100"
+                      : "opacity-25 pointer-events-none"
+                  } transition-all duration-300`}
+                >
+                  <label
+                    htmlFor="billing-address"
+                    className="mt-4 mb-2 block text-sm text-gray-700 font-medium"
+                  >
+                    A dónde lo enviamos?
+                  </label>
+
+                  <div className="flex flex-col sm:flex-row">
+                    <div className="relative flex-shrink-0 sm:w-7/12">
+                      <input
+                        type="text"
+                        id="billing-address"
+                        name="billing-address"
+                        className="w-full rounded-md border border-gray-200 px-4 py-3 pl-5 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                        placeholder="Tu Dirección"
+                      />
+                    </div>
+                    <input
+                      type="text"
+                      name="billing-zip"
+                      className="flex-shrink-0 rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none sm:w-1/6 focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                      placeholder="Timbre"
+                    />
+                    <select
+                      itemType="text"
+                      name="billing-state"
+                      className="w-full rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                    >
+                      <option value="Localidad">-- Localidad --</option>
+                      <option value="Localidad">CABA</option>
+                      <option value="Localidad">GBA</option>
+                      <option value="Localidad">Buenos Aires</option>
+                      <option value="Localidad">Interior</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="mt-6 border-t border-b py-2">
+                  <div className="flex items-center justify-between">
+                    <p className="text-sm font-medium text-gray-700">
+                      Subtotal
+                    </p>
+                    <p className="font-semibold text-gray-700">$399.00</p>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <p className="text-sm font-medium text-gray-700">Envío</p>
+                    <p className="font-semibold text-gray-700">$8.00</p>
+                  </div>
+                </div>
+                <div className="mt-6 flex items-center justify-between">
+                  <p className="text-sm font-medium text-gray-700">Total</p>
+                  <p className="text-2xl font-semibold text-gray-700">
+                    $408.00
+                  </p>
+                </div>
               </div>
-              <div
-                className={`${
-                  payWithShippingState
-                    ? "opacity-100"
-                    : "opacity-25 pointer-events-none"
-                } transition-all duration-300`}
-              >
+            </div>
+
+            <div className={`${!readyToPayState ? "hidden" : "block"} `}>
+              <p className="text-xl text-gray-700 font-medium">
+                Confirmación del pedido
+              </p>
+              <p className="text-gray-400">
+                Por favor revisa que los datos sean correctos.
+              </p>
+              <div className="">
+                <label
+                  htmlFor="email"
+                  className="mt-4 mb-2 block text-sm text-gray-700 font-medium"
+                >
+                  Tu E-mail
+                </label>
+                <div className="relative">
+                  <p className="w-full border-y border-gray-5 px-4 py-3 pl-5 text-base font-medium text-gray-700 shadow-sm outline-none">
+                    facundoacostayl@gmail.com
+                  </p>
+                </div>
+                <label
+                  htmlFor="card-holder"
+                  className="mt-4 mb-2 block text-sm text-gray-700 font-medium"
+                >
+                  Tu Nombre
+                </label>
+                <div className="relative">
+                  <p className="w-full border-y border-gray-5 px-4 py-3 pl-5 text-base font-medium text-gray-700 shadow-sm outline-none">
+                    Facundo Acosta
+                  </p>
+                </div>
+                <label
+                  htmlFor="card-no"
+                  className="mt-4 mb-2 block text-sm text-gray-700 font-medium"
+                >
+                  Teléfono de Contacto
+                </label>
+                <div className="flex">
+                  <div className="relative w-full flex-shrink-0">
+                    <p className="w-full border-y border-gray-5 px-4 py-3 pl-5 text-base font-medium text-gray-700 shadow-sm outline-none">
+                      +541133436143
+                    </p>
+                  </div>
+                </div>
                 <label
                   htmlFor="billing-address"
                   className="mt-4 mb-2 block text-sm text-gray-700 font-medium"
                 >
                   A dónde lo enviamos?
                 </label>
-
                 <div className="flex flex-col sm:flex-row">
                   <div className="relative flex-shrink-0 sm:w-7/12">
-                    <input
-                      type="text"
-                      id="billing-address"
-                      name="billing-address"
-                      className="w-full rounded-md border border-gray-200 px-4 py-3 pl-5 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
-                      placeholder="Tu Dirección"
-                    />
+                    <p className="w-full border-y border-gray-5 px-4 py-3 pl-5 text-base font-medium text-gray-700 shadow-sm outline-none">
+                      Avenida Siempre Viva 1234
+                    </p>
                   </div>
-                  <input
-                    type="text"
-                    name="billing-zip"
-                    className="flex-shrink-0 rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none sm:w-1/6 focus:z-10 focus:border-blue-500 focus:ring-blue-500"
-                    placeholder="Timbre"
-                  />
-                  <select
-                    itemType="text"
-                    name="billing-state"
-                    className="w-full rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
-                  >
-                    <option value="Localidad">-- Localidad --</option>
-                    <option value="Localidad">CABA</option>
-                    <option value="Localidad">GBA</option>
-                    <option value="Localidad">Buenos Aires</option>
-                    <option value="Localidad">Interior</option>
-                  </select>
+                  <p className="border-y border-gray-5 px-4 py-3 pl-5 text-base font-medium text-gray-700 shadow-sm outline-none sm:w-1/6">
+                    Casa
+                  </p>
+                  <p className="w-full border-y border-gray-5 px-4 py-3 pl-5 text-base font-medium text-gray-700 shadow-sm outline-none">
+                    CABA
+                  </p>
                 </div>
-              </div>
 
-              <div className="mt-6 border-t border-b py-2">
-                <div className="flex items-center justify-between">
-                  <p className="text-sm font-medium text-gray-700">Subtotal</p>
-                  <p className="font-semibold text-gray-700">$399.00</p>
+                <div className="mt-6 border-t border-b py-2">
+                  <div className="flex items-center justify-between">
+                    <p className="text-sm font-medium text-gray-700">
+                      Subtotal
+                    </p>
+                    <p className="font-semibold text-gray-700">$399.00</p>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <p className="text-sm font-medium text-gray-700">Envío</p>
+                    <p className="font-semibold text-gray-700">$8.00</p>
+                  </div>
                 </div>
-                <div className="flex items-center justify-between">
-                  <p className="text-sm font-medium text-gray-700">Envío</p>
-                  <p className="font-semibold text-gray-700">$8.00</p>
+                <div className="mt-6 flex items-center justify-between">
+                  <p className="text-sm font-medium text-gray-700">Total</p>
+                  <p className="text-2xl font-semibold text-gray-700">
+                    $408.00
+                  </p>
                 </div>
-              </div>
-              <div className="mt-6 flex items-center justify-between">
-                <p className="text-sm font-medium text-gray-700">Total</p>
-                <p className="text-2xl font-semibold text-gray-700">$408.00</p>
               </div>
             </div>
             <button
@@ -362,105 +462,15 @@ export const Checkout = () => {
                 readyToPayState && "hidden"
               } mt-4 mb-8 w-full rounded-md px-6 py-3 font-medium bg-gray-500 text-white border border-gray-300 hover:text-white hover:bg-gray-400 duration-200`}
             >
-              Continuar para el Pago
-            </button>
-            <button
-              className={`${
-                readyToPayState ? "block" : "hidden"
-              } mt-4 mb-8 w-full rounded-md px-6 py-3 font-medium bg-gray-700 text-white border border-gray-300 hover:text-white hover:bg-gray-400 duration-200`}
-            >
-              Realizar pedido
-            </button>
-          </div>
-          <div
-            className={`${
-              !readyToPayState ? "hidden" : "block"
-            } mt-10 bg-gray-50 px-4 pt-8 lg:mt-0`}
-          >
-            <p className="text-xl text-gray-700 font-medium">
-              Confirmación del pedido
-            </p>
-            <p className="text-gray-400">
-              Por favor revisa que los datos sean correctos.
-            </p>
-            <div className="">
-              <label
-                htmlFor="email"
-                className="mt-4 mb-2 block text-sm text-gray-700 font-medium"
-              >
-                Tu E-mail
-              </label>
-              <div className="relative">
-                <p className="w-full border-y border-gray-5 px-4 py-3 pl-5 text-base font-medium text-gray-700 shadow-sm outline-none">
-                  facundoacostayl@gmail.com
-                </p>
-              </div>
-              <label
-                htmlFor="card-holder"
-                className="mt-4 mb-2 block text-sm text-gray-700 font-medium"
-              >
-                Tu Nombre
-              </label>
-              <div className="relative">
-                <p className="w-full border-y border-gray-5 px-4 py-3 pl-5 text-base font-medium text-gray-700 shadow-sm outline-none">
-                  Facundo Acosta
-                </p>
-              </div>
-              <label
-                htmlFor="card-no"
-                className="mt-4 mb-2 block text-sm text-gray-700 font-medium"
-              >
-                Teléfono de Contacto
-              </label>
-              <div className="flex">
-                <div className="relative w-full flex-shrink-0">
-                  <p className="w-full border-y border-gray-5 px-4 py-3 pl-5 text-base font-medium text-gray-700 shadow-sm outline-none">
-                    +541133436143
-                  </p>
-                </div>
-              </div>
-              <label
-                htmlFor="billing-address"
-                className="mt-4 mb-2 block text-sm text-gray-700 font-medium"
-              >
-                A dónde lo enviamos?
-              </label>
-              <div className="flex flex-col sm:flex-row">
-                <div className="relative flex-shrink-0 sm:w-7/12">
-                  <p className="w-full border-y border-gray-5 px-4 py-3 pl-5 text-base font-medium text-gray-700 shadow-sm outline-none">
-                    Avenida Siempre Viva 1234
-                  </p>
-                </div>
-                <p className="border-y border-gray-5 px-4 py-3 pl-5 text-base font-medium text-gray-700 shadow-sm outline-none sm:w-1/6">
-                  Casa
-                </p>
-                <p className="w-full border-y border-gray-5 px-4 py-3 pl-5 text-base font-medium text-gray-700 shadow-sm outline-none">
-                  CABA
-                </p>
-              </div>
-
-              <div className="mt-6 border-t border-b py-2">
-                <div className="flex items-center justify-between">
-                  <p className="text-sm font-medium text-gray-700">Subtotal</p>
-                  <p className="font-semibold text-gray-700">$399.00</p>
-                </div>
-                <div className="flex items-center justify-between">
-                  <p className="text-sm font-medium text-gray-700">Envío</p>
-                  <p className="font-semibold text-gray-700">$8.00</p>
-                </div>
-              </div>
-              <div className="mt-6 flex items-center justify-between">
-                <p className="text-sm font-medium text-gray-700">Total</p>
-                <p className="text-2xl font-semibold text-gray-700">$408.00</p>
-              </div>
-            </div>
-            <button
-              onClick={() => getReadyToPay()}
-              className={`${
-                readyToPayState && "hidden"
-              } mt-4 mb-8 w-full rounded-md px-6 py-3 font-medium bg-gray-500 text-white border border-gray-300 hover:text-white hover:bg-gray-400 duration-200`}
-            >
-              Continuar para el Pago
+              {loading && (
+                <SpinnerCircularFixed
+                  className="inline-block w-full"
+                  size={30}
+                  thickness={170}
+                  color="white"
+                ></SpinnerCircularFixed>
+              )}
+              Continuar para el pago
             </button>
             <button
               className={`${
