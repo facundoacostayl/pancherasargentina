@@ -143,9 +143,7 @@ export const Checkout = () => {
 
             <div
               className={`${
-                !readyToPayState
-                  ? "opacity-100"
-                  : "opacity-25 pointer-events-none"
+                readyToPayState && "opacity-25 pointer-events-none"
               } transition-all duration-300`}
             >
               <p className="mt-8 text-lg text-gray-700 font-medium">
@@ -211,7 +209,11 @@ export const Checkout = () => {
               </form>
             </div>
           </div>
-          <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0">
+          <div
+            className={`${
+              readyToPayState && "hidden"
+            } mt-10 bg-gray-50 px-4 pt-8 lg:mt-0 transition-all duration-300`}
+          >
             <p className="text-xl text-gray-700 font-medium">
               Información del Cliente
             </p>
@@ -318,9 +320,116 @@ export const Checkout = () => {
             </div>
             <button
               onClick={() => getReadyToPay()}
-              className="mt-4 mb-8 w-full rounded-md px-6 py-3 font-medium bg-gray-500 text-white border border-gray-300 hover:text-white hover:bg-gray-400 duration-200"
+              className={`${
+                readyToPayState && "hidden"
+              } mt-4 mb-8 w-full rounded-md px-6 py-3 font-medium bg-gray-500 text-white border border-gray-300 hover:text-white hover:bg-gray-400 duration-200`}
             >
               Continuar para el Pago
+            </button>
+            <button
+              className={`${
+                readyToPayState ? "block" : "hidden"
+              } mt-4 mb-8 w-full rounded-md px-6 py-3 font-medium bg-gray-700 text-white border border-gray-300 hover:text-white hover:bg-gray-400 duration-200`}
+            >
+              Realizar pedido
+            </button>
+          </div>
+          <div
+            className={`${
+              !readyToPayState ? "hidden" : "block"
+            } mt-10 bg-gray-50 px-4 pt-8 lg:mt-0`}
+          >
+            <p className="text-xl text-gray-700 font-medium">
+              Confirmación del pedido
+            </p>
+            <p className="text-gray-400">
+              Por favor revisa que los datos sean correctos.
+            </p>
+            <div className="">
+              <label
+                htmlFor="email"
+                className="mt-4 mb-2 block text-sm text-gray-700 font-medium"
+              >
+                Tu E-mail
+              </label>
+              <div className="relative">
+                <p className="w-full border-y border-gray-5 px-4 py-3 pl-5 text-base font-medium text-gray-700 shadow-sm outline-none">
+                  facundoacostayl@gmail.com
+                </p>
+              </div>
+              <label
+                htmlFor="card-holder"
+                className="mt-4 mb-2 block text-sm text-gray-700 font-medium"
+              >
+                Tu Nombre
+              </label>
+              <div className="relative">
+                <p className="w-full border-y border-gray-5 px-4 py-3 pl-5 text-base font-medium text-gray-700 shadow-sm outline-none">
+                  Facundo Acosta
+                </p>
+              </div>
+              <label
+                htmlFor="card-no"
+                className="mt-4 mb-2 block text-sm text-gray-700 font-medium"
+              >
+                Teléfono de Contacto
+              </label>
+              <div className="flex">
+                <div className="relative w-full flex-shrink-0">
+                  <p className="w-full border-y border-gray-5 px-4 py-3 pl-5 text-base font-medium text-gray-700 shadow-sm outline-none">
+                    +541133436143
+                  </p>
+                </div>
+              </div>
+              <label
+                htmlFor="billing-address"
+                className="mt-4 mb-2 block text-sm text-gray-700 font-medium"
+              >
+                A dónde lo enviamos?
+              </label>
+              <div className="flex flex-col sm:flex-row">
+                <div className="relative flex-shrink-0 sm:w-7/12">
+                  <p className="w-full border-y border-gray-5 px-4 py-3 pl-5 text-base font-medium text-gray-700 shadow-sm outline-none">
+                    Avenida Siempre Viva 1234
+                  </p>
+                </div>
+                <p className="border-y border-gray-5 px-4 py-3 pl-5 text-base font-medium text-gray-700 shadow-sm outline-none sm:w-1/6">
+                  Casa
+                </p>
+                <p className="w-full border-y border-gray-5 px-4 py-3 pl-5 text-base font-medium text-gray-700 shadow-sm outline-none">
+                  CABA
+                </p>
+              </div>
+
+              <div className="mt-6 border-t border-b py-2">
+                <div className="flex items-center justify-between">
+                  <p className="text-sm font-medium text-gray-700">Subtotal</p>
+                  <p className="font-semibold text-gray-700">$399.00</p>
+                </div>
+                <div className="flex items-center justify-between">
+                  <p className="text-sm font-medium text-gray-700">Envío</p>
+                  <p className="font-semibold text-gray-700">$8.00</p>
+                </div>
+              </div>
+              <div className="mt-6 flex items-center justify-between">
+                <p className="text-sm font-medium text-gray-700">Total</p>
+                <p className="text-2xl font-semibold text-gray-700">$408.00</p>
+              </div>
+            </div>
+            <button
+              onClick={() => getReadyToPay()}
+              className={`${
+                readyToPayState && "hidden"
+              } mt-4 mb-8 w-full rounded-md px-6 py-3 font-medium bg-gray-500 text-white border border-gray-300 hover:text-white hover:bg-gray-400 duration-200`}
+            >
+              Continuar para el Pago
+            </button>
+            <button
+              className={`${
+                readyToPayState ? "block" : "hidden"
+              } mt-4 mb-8 w-full rounded-md px-6 py-3 font-medium bg-gray-700 text-white border border-gray-300 hover:text-white hover:bg-gray-400 duration-200`}
+            >
+              Realizar pedido
             </button>
           </div>
         </div>
