@@ -56,10 +56,22 @@ export const Product = () => {
                   icon={faTruck}
                 ></FontAwesomeIcon>
                 <div className="flex flex-col gap-3">
-                  <ShippingPriceComponent></ShippingPriceComponent>
-                  <ShippingPriceComponent></ShippingPriceComponent>
-                  <ShippingPriceComponent></ShippingPriceComponent>
-                  <ShippingPriceComponent></ShippingPriceComponent>
+                  <ShippingPriceComponent
+                    price={2500}
+                    location={"CABA"}
+                  ></ShippingPriceComponent>
+                  <ShippingPriceComponent
+                    price={4000}
+                    location={"GBA"}
+                  ></ShippingPriceComponent>
+                  <ShippingPriceComponent
+                    price={7000}
+                    location={"Buenos Aires"}
+                  ></ShippingPriceComponent>
+                  <ShippingPriceComponent
+                    price={9000}
+                    location={"Interior"}
+                  ></ShippingPriceComponent>
                 </div>
               </div>
             </div>
