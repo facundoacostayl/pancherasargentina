@@ -183,6 +183,8 @@ export const Checkout = () => {
             <div
               className={`${
                 readyToPayState && "opacity-25 pointer-events-none"
+              } ${
+                loading && "opacity-25 pointer-events-none"
               } transition-all duration-300`}
             >
               <p className="mt-8 text-lg text-gray-700 font-medium">
@@ -422,19 +424,27 @@ export const Checkout = () => {
                 >
                   A dónde lo enviamos?
                 </label>
-                <div className="flex flex-col sm:flex-row">
-                  <div className="relative flex-shrink-0 sm:w-7/12">
+                {payWithShippingState ? (
+                  <div className="flex flex-col sm:flex-row">
+                    <div className="relative flex-shrink-0 sm:w-7/12">
+                      <p className="w-full border-y border-gray-5 px-4 py-3 pl-5 text-base font-medium text-gray-700 shadow-sm outline-none">
+                        Avenida Siempre Viva 1234
+                      </p>
+                    </div>
+                    <p className="border-y border-gray-5 px-4 py-3 pl-5 text-base font-medium text-gray-700 shadow-sm outline-none sm:w-1/6">
+                      Casa
+                    </p>
                     <p className="w-full border-y border-gray-5 px-4 py-3 pl-5 text-base font-medium text-gray-700 shadow-sm outline-none">
-                      Avenida Siempre Viva 1234
+                      CABA
                     </p>
                   </div>
-                  <p className="border-y border-gray-5 px-4 py-3 pl-5 text-base font-medium text-gray-700 shadow-sm outline-none sm:w-1/6">
-                    Casa
-                  </p>
-                  <p className="w-full border-y border-gray-5 px-4 py-3 pl-5 text-base font-medium text-gray-700 shadow-sm outline-none">
-                    CABA
-                  </p>
-                </div>
+                ) : (
+                  <div className="relative w-full flex-shrink-0">
+                    <p className="w-full border-y border-gray-5 px-4 py-3 pl-5 text-base font-medium text-gray-700 shadow-sm outline-none">
+                      Retira en Fábrica
+                    </p>
+                  </div>
+                )}
 
                 <div className="mt-6 border-t border-b py-2">
                   <div className="flex items-center justify-between">
@@ -464,7 +474,7 @@ export const Checkout = () => {
             >
               {loading && (
                 <SpinnerCircularFixed
-                  className="inline-block w-full"
+                  className="inline-block w-full mr-2"
                   size={30}
                   thickness={170}
                   color="white"
