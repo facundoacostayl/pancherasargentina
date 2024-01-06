@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 
 import { SpinnerCircularFixed } from "spinners-react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { ShoppingCart } from "../components/ShoppingCart";
 import { MobileMenu } from "../components/MobileMenu";
@@ -20,16 +22,11 @@ export const Checkout = () => {
   const [readyToPayState, setReadyToPay] = useState<boolean>(false);
   const [payWithShippingState, setPayWithShippingState] =
     useState<boolean>(false);
-  const [inputErrorState, setInputErrorState] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     setLoading(false);
   }, [readyToPayState]);
-
-  useEffect(() => {
-    console.log(inputErrorState);
-  }, [inputErrorState]);
 
   const sanitizeValue = (value: string, name: string) => {
     let newValue = "";
@@ -69,43 +66,24 @@ export const Checkout = () => {
     const phone = shippingData.phone;
     const shippingType = shippingData.shippingType;
 
-    if (payWithShippingState) {
-      const address = shippingData.address;
-      const door = shippingData.door;
-      const city = shippingData.city;
+    const address = shippingData.address;
+    const door = shippingData.door;
+    const city = shippingData.city;
 
-      if (!address) {
-        setInputErrorState((c) => [...c, "address"]);
-      }
-
-      if (!door) {
-        setInputErrorState((c) => [...c, "door"]);
-      }
-
-      if (!city) {
-        setInputErrorState((c) => [...c, "city"]);
-      }
+    if (
+      !clientName ||
+      !email ||
+      !phone ||
+      !shippingType ||
+      (payWithShippingState && !address) ||
+      (payWithShippingState && !door) ||
+      (payWithShippingState && !city)
+    ) {
+      toast.error("Hay campos incompletos o incorrectos");
+      return;
     }
 
-    if (!clientName) {
-      setInputErrorState((c) => [...c, "clientName"]);
-    }
-    if (!email) {
-      setInputErrorState((c) => [...c, "email"]);
-    }
-    if (!phone) {
-      setInputErrorState((c) => [...c, "phone"]);
-    }
-    if (!shippingType) {
-      setInputErrorState((c) => [...c, "shippingType"]);
-    }
-
-    if (inputErrorState.length > 0) return;
-
-    /*if (inputErrorState.length <= 0) {
-      setInputErrorState([]);
-      getReadyToPay();
-    }*/
+    getReadyToPay();
   };
 
   const getReadyToPay = () => {
@@ -236,7 +214,18 @@ export const Checkout = () => {
           </div>
         </div>
         <div className="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32">
-          <div className="px-4 pt-8">
+          <div className="relative px-4 pt-8">
+            <ToastContainer
+              autoClose={10000}
+              hideProgressBar={true}
+              limit={1}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              className="absolute top-0 left-0"
+            />
             <p className="text-xl text-gray-700 font-medium">
               Detalles de compra
             </p>
@@ -373,9 +362,7 @@ export const Checkout = () => {
                     type="email"
                     id="email"
                     name="email"
-                    className={`${
-                      inputErrorState.includes("email") && "bg-blue-500"
-                    } w-full rounded-md border border-gray-200 px-4 py-3 pl-5 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500`}
+                    className="w-full rounded-md border border-gray-200 px-4 py-3 pl-5 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                     placeholder="tucorreo@gmail.com"
                     maxLength={50}
                   />
