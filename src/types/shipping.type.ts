@@ -1,5 +1,5 @@
 export type Shipping = {
-  name: string;
+  clientName: string;
   email: string;
   phone: number;
   shippingType: string;

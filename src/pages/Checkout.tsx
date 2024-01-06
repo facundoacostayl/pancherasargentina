@@ -12,7 +12,7 @@ import { Shipping } from "../types/shipping.type";
 
 export const Checkout = () => {
   const [shippingData, setShippingData] = useState<Shipping>({
-    name: "",
+    clientName: "",
     email: "",
     phone: 0,
     shippingType: "",
@@ -24,6 +24,7 @@ export const Checkout = () => {
 
   useEffect(() => {
     setLoading(false);
+    console.log(shippingData);
   }, [readyToPayState]);
 
   const sanitizeValue = (value: string, name: string) => {
@@ -44,7 +45,9 @@ export const Checkout = () => {
     return value;
   };
 
-  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeHandler = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const cleanValue = sanitizeValue(
       e.currentTarget.value,
       e.currentTarget.name
@@ -232,15 +235,17 @@ export const Checkout = () => {
                 <div className="relative">
                   <input
                     onClick={() => togglePayWithShipping(true)}
+                    onChange={(e) => onChangeHandler(e)}
+                    value="Envío por Correo"
                     className="peer hidden"
-                    id="radio_1"
+                    id="correo"
                     type="radio"
-                    name="radio"
+                    name="shippingType"
                   />
                   <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
                   <label
                     className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4"
-                    htmlFor="radio_1"
+                    htmlFor="correo"
                   >
                     <img
                       className="w-14 object-contain"
@@ -260,15 +265,17 @@ export const Checkout = () => {
                 <div className="relative">
                   <input
                     onClick={() => togglePayWithShipping(false)}
+                    onChange={(e) => onChangeHandler(e)}
+                    value="Retiro en Fábrica"
                     className="peer hidden"
-                    id="radio_2"
+                    id="retiro"
                     type="radio"
-                    name="radio"
+                    name="shippingType"
                   />
                   <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
                   <label
                     className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4"
-                    htmlFor="radio_2"
+                    htmlFor="retiro"
                   >
                     <img
                       className="w-14 object-contain"
@@ -309,30 +316,36 @@ export const Checkout = () => {
                 </label>
                 <div className="relative">
                   <input
-                    type="text"
+                    onChange={(e) => onChangeHandler(e)}
+                    value={shippingData.email}
+                    type="email"
                     id="email"
                     name="email"
                     className="w-full rounded-md border border-gray-200 px-4 py-3 pl-5 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                     placeholder="tucorreo@gmail.com"
+                    maxLength={50}
                   />
                 </div>
                 <label
-                  htmlFor="card-holder"
+                  htmlFor="clientName"
                   className="mt-4 mb-2 block text-sm text-gray-700 font-medium"
                 >
                   Tu Nombre
                 </label>
                 <div className="relative">
                   <input
+                    onChange={(e) => onChangeHandler(e)}
+                    value={shippingData.clientName}
                     type="text"
-                    id="card-holder"
-                    name="card-holder"
+                    id="clientName"
+                    name="clientName"
                     className="w-full rounded-md border border-gray-200 px-4 py-3 pl-5 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                     placeholder="Tu nombre completo"
+                    maxLength={50}
                   />
                 </div>
                 <label
-                  htmlFor="card-no"
+                  htmlFor="phone"
                   className="mt-4 mb-2 block text-sm text-gray-700 font-medium"
                 >
                   Teléfono de Contacto
@@ -340,11 +353,14 @@ export const Checkout = () => {
                 <div className="flex">
                   <div className="relative w-7/12 flex-shrink-0">
                     <input
-                      type="text"
-                      id="card-no"
-                      name="card-no"
+                      onChange={(e) => onChangeHandler(e)}
+                      value={shippingData.phone}
+                      type="number"
+                      id="phone"
+                      name="phone"
                       className="w-full rounded-md border border-gray-200 px-2 py-3 pl-5 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                       placeholder="01175872145"
+                      maxLength={20}
                     />
                   </div>
                 </div>
@@ -356,7 +372,7 @@ export const Checkout = () => {
                   } transition-all duration-300`}
                 >
                   <label
-                    htmlFor="billing-address"
+                    htmlFor="address"
                     className="mt-4 mb-2 block text-sm text-gray-700 font-medium"
                   >
                     A dónde lo enviamos?
@@ -365,29 +381,38 @@ export const Checkout = () => {
                   <div className="flex flex-col sm:flex-row">
                     <div className="relative flex-shrink-0 sm:w-7/12">
                       <input
+                        onChange={(e) => onChangeHandler(e)}
+                        value={shippingData.address}
                         type="text"
-                        id="billing-address"
-                        name="billing-address"
+                        id="address"
+                        name="address"
                         className="w-full rounded-md border border-gray-200 px-4 py-3 pl-5 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                         placeholder="Tu Dirección"
+                        maxLength={100}
                       />
                     </div>
                     <input
+                      onChange={(e) => onChangeHandler(e)}
+                      value={shippingData.door}
                       type="text"
-                      name="billing-zip"
+                      name="door"
+                      id="door"
                       className="flex-shrink-0 rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none sm:w-1/6 focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                       placeholder="Timbre"
+                      maxLength={10}
                     />
                     <select
+                      onChange={(e) => onChangeHandler(e)}
                       itemType="text"
-                      name="billing-state"
+                      name="city"
+                      id="city"
                       className="w-full rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                     >
-                      <option value="Localidad">-- Localidad --</option>
-                      <option value="Localidad">CABA</option>
-                      <option value="Localidad">GBA</option>
-                      <option value="Localidad">Buenos Aires</option>
-                      <option value="Localidad">Interior</option>
+                      <option value="">-- Localidad --</option>
+                      <option value="CABA">CABA</option>
+                      <option value="GBA">GBA</option>
+                      <option value="Buenos Aires">Buenos Aires</option>
+                      <option value="Interior">Interior</option>
                     </select>
                   </div>
                 </div>
