@@ -310,7 +310,7 @@ export const Checkout = () => {
               <div className="">
                 <label
                   htmlFor="email"
-                  className="mt-4 mb-2 block text-sm text-gray-700 font-medium"
+                  className="mt-4 mb-2 block text-sm text-gray-500 font-medium"
                 >
                   Tu E-mail
                 </label>
@@ -328,7 +328,7 @@ export const Checkout = () => {
                 </div>
                 <label
                   htmlFor="clientName"
-                  className="mt-4 mb-2 block text-sm text-gray-700 font-medium"
+                  className="mt-4 mb-2 block text-sm text-gray-500 font-medium"
                 >
                   Tu Nombre
                 </label>
@@ -346,7 +346,7 @@ export const Checkout = () => {
                 </div>
                 <label
                   htmlFor="phone"
-                  className="mt-4 mb-2 block text-sm text-gray-700 font-medium"
+                  className="mt-4 mb-2 block text-sm text-gray-500 font-medium"
                 >
                   Teléfono de Contacto
                 </label>
@@ -373,7 +373,7 @@ export const Checkout = () => {
                 >
                   <label
                     htmlFor="address"
-                    className="mt-4 mb-2 block text-sm text-gray-700 font-medium"
+                    className="mt-4 mb-2 block text-sm text-gray-500 font-medium"
                   >
                     A dónde lo enviamos?
                   </label>
@@ -448,42 +448,42 @@ export const Checkout = () => {
               <div className="">
                 <label
                   htmlFor="email"
-                  className="mt-4 mb-2 block text-sm text-gray-700 font-medium"
+                  className="mt-4 mb-2 block text-sm text-gray-500 font-medium"
                 >
                   Tu E-mail
                 </label>
                 <div className="relative">
                   <p className="w-full border-y border-gray-5 px-4 py-3 pl-5 text-base font-medium text-gray-700 shadow-sm outline-none">
-                    facundoacostayl@gmail.com
+                    {shippingData.email}
                   </p>
                 </div>
                 <label
                   htmlFor="card-holder"
-                  className="mt-4 mb-2 block text-sm text-gray-700 font-medium"
+                  className="mt-4 mb-2 block text-sm text-gray-500 font-medium"
                 >
                   Tu Nombre
                 </label>
                 <div className="relative">
                   <p className="w-full border-y border-gray-5 px-4 py-3 pl-5 text-base font-medium text-gray-700 shadow-sm outline-none">
-                    Facundo Acosta
+                    {shippingData.clientName}
                   </p>
                 </div>
                 <label
                   htmlFor="card-no"
-                  className="mt-4 mb-2 block text-sm text-gray-700 font-medium"
+                  className="mt-4 mb-2 block text-sm text-gray-500 font-medium"
                 >
                   Teléfono de Contacto
                 </label>
                 <div className="flex">
                   <div className="relative w-full flex-shrink-0">
                     <p className="w-full border-y border-gray-5 px-4 py-3 pl-5 text-base font-medium text-gray-700 shadow-sm outline-none">
-                      +541133436143
+                      {shippingData.phone}
                     </p>
                   </div>
                 </div>
                 <label
                   htmlFor="billing-address"
-                  className="mt-4 mb-2 block text-sm text-gray-700 font-medium"
+                  className="mt-4 mb-2 block text-sm text-gray-500 font-medium"
                 >
                   A dónde lo enviamos?
                 </label>
@@ -491,20 +491,20 @@ export const Checkout = () => {
                   <div className="flex flex-col sm:flex-row">
                     <div className="relative flex-shrink-0 sm:w-7/12">
                       <p className="w-full border-y border-gray-5 px-4 py-3 pl-5 text-base font-medium text-gray-700 shadow-sm outline-none">
-                        Avenida Siempre Viva 1234
+                        {shippingData.address}
                       </p>
                     </div>
                     <p className="border-y border-gray-5 px-4 py-3 pl-5 text-base font-medium text-gray-700 shadow-sm outline-none sm:w-1/6">
-                      Casa
+                      {shippingData.door}
                     </p>
                     <p className="w-full border-y border-gray-5 px-4 py-3 pl-5 text-base font-medium text-gray-700 shadow-sm outline-none">
-                      CABA
+                      {shippingData.city}
                     </p>
                   </div>
                 ) : (
                   <div className="relative w-full flex-shrink-0">
                     <p className="w-full border-y border-gray-5 px-4 py-3 pl-5 text-base font-medium text-gray-700 shadow-sm outline-none">
-                      Retira en Fábrica
+                      {shippingData.shippingType}
                     </p>
                   </div>
                 )}
