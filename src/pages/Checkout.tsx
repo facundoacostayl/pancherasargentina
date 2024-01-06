@@ -14,18 +14,22 @@ export const Checkout = () => {
   const [shippingData, setShippingData] = useState<Shipping>({
     clientName: "",
     email: "",
-    phone: 0,
+    phone: "",
     shippingType: "",
   });
   const [readyToPayState, setReadyToPay] = useState<boolean>(false);
   const [payWithShippingState, setPayWithShippingState] =
     useState<boolean>(false);
+  const [inputErrorState, setInputErrorState] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     setLoading(false);
-    console.log(shippingData);
   }, [readyToPayState]);
+
+  useEffect(() => {
+    console.log(inputErrorState);
+  }, [inputErrorState]);
 
   const sanitizeValue = (value: string, name: string) => {
     let newValue = "";
@@ -59,6 +63,51 @@ export const Checkout = () => {
     });
   };
 
+  const onSubmitShippingData = () => {
+    const clientName = shippingData.clientName;
+    const email = shippingData.email;
+    const phone = shippingData.phone;
+    const shippingType = shippingData.shippingType;
+
+    if (payWithShippingState) {
+      const address = shippingData.address;
+      const door = shippingData.door;
+      const city = shippingData.city;
+
+      if (!address) {
+        setInputErrorState((c) => [...c, "address"]);
+      }
+
+      if (!door) {
+        setInputErrorState((c) => [...c, "door"]);
+      }
+
+      if (!city) {
+        setInputErrorState((c) => [...c, "city"]);
+      }
+    }
+
+    if (!clientName) {
+      setInputErrorState((c) => [...c, "clientName"]);
+    }
+    if (!email) {
+      setInputErrorState((c) => [...c, "email"]);
+    }
+    if (!phone) {
+      setInputErrorState((c) => [...c, "phone"]);
+    }
+    if (!shippingType) {
+      setInputErrorState((c) => [...c, "shippingType"]);
+    }
+
+    if (inputErrorState.length > 0) return;
+
+    /*if (inputErrorState.length <= 0) {
+      setInputErrorState([]);
+      getReadyToPay();
+    }*/
+  };
+
   const getReadyToPay = () => {
     setLoading(true);
     setTimeout(() => {
@@ -78,7 +127,10 @@ export const Checkout = () => {
         <Top></Top>
         <NavBar></NavBar>
 
-        <div className="max-w-full flex flex-col items-center border-b rounded-b-md bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
+        <div
+          key="name"
+          className="max-w-full flex flex-col items-center border-b rounded-b-md bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32"
+        >
           <div className="hidden lg:block lg:w-[120px]">
             <img
               src="https://i.ibb.co/V3t8ccM/mercadopagologo.webp"
@@ -321,7 +373,9 @@ export const Checkout = () => {
                     type="email"
                     id="email"
                     name="email"
-                    className="w-full rounded-md border border-gray-200 px-4 py-3 pl-5 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                    className={`${
+                      inputErrorState.includes("email") && "bg-blue-500"
+                    } w-full rounded-md border border-gray-200 px-4 py-3 pl-5 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500`}
                     placeholder="tucorreo@gmail.com"
                     maxLength={50}
                   />
@@ -355,7 +409,7 @@ export const Checkout = () => {
                     <input
                       onChange={(e) => onChangeHandler(e)}
                       value={shippingData.phone}
-                      type="number"
+                      type="text"
                       id="phone"
                       name="phone"
                       className="w-full rounded-md border border-gray-200 px-2 py-3 pl-5 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
@@ -446,10 +500,7 @@ export const Checkout = () => {
                 Por favor revisa que los datos sean correctos.
               </p>
               <div className="">
-                <label
-                  htmlFor="email"
-                  className="mt-4 mb-2 block text-sm text-gray-500 font-medium"
-                >
+                <label className="mt-4 mb-2 block text-sm text-gray-500 font-medium">
                   Tu E-mail
                 </label>
                 <div className="relative">
@@ -457,10 +508,7 @@ export const Checkout = () => {
                     {shippingData.email}
                   </p>
                 </div>
-                <label
-                  htmlFor="card-holder"
-                  className="mt-4 mb-2 block text-sm text-gray-500 font-medium"
-                >
+                <label className="mt-4 mb-2 block text-sm text-gray-500 font-medium">
                   Tu Nombre
                 </label>
                 <div className="relative">
@@ -468,10 +516,7 @@ export const Checkout = () => {
                     {shippingData.clientName}
                   </p>
                 </div>
-                <label
-                  htmlFor="card-no"
-                  className="mt-4 mb-2 block text-sm text-gray-500 font-medium"
-                >
+                <label className="mt-4 mb-2 block text-sm text-gray-500 font-medium">
                   Teléfono de Contacto
                 </label>
                 <div className="flex">
@@ -481,10 +526,7 @@ export const Checkout = () => {
                     </p>
                   </div>
                 </div>
-                <label
-                  htmlFor="billing-address"
-                  className="mt-4 mb-2 block text-sm text-gray-500 font-medium"
-                >
+                <label className="mt-4 mb-2 block text-sm text-gray-500 font-medium">
                   A dónde lo enviamos?
                 </label>
                 {payWithShippingState ? (
@@ -530,7 +572,7 @@ export const Checkout = () => {
               </div>
             </div>
             <button
-              onClick={() => getReadyToPay()}
+              onClick={() => onSubmitShippingData()}
               className={`${
                 readyToPayState && "hidden"
               } mt-4 mb-8 w-full rounded-md px-6 py-3 font-medium bg-gray-500 text-white border border-gray-300 hover:text-white hover:bg-gray-400 duration-200`}

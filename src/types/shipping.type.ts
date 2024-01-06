@@ -1,7 +1,7 @@
 export type Shipping = {
   clientName: string;
   email: string;
-  phone: number;
+  phone: string;
   shippingType: string;
   address?: string;
   door?: string;
