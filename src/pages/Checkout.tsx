@@ -84,6 +84,9 @@ export const Checkout = () => {
     }
 
     getReadyToPay();
+    toast.success(
+      "Estás por realizar el pago, por favor, revisa que tus datos sean los correctos antes de confirmar"
+    );
   };
 
   const getReadyToPay = () => {
@@ -392,7 +395,7 @@ export const Checkout = () => {
                   Teléfono de Contacto
                 </label>
                 <div className="flex">
-                  <div className="relative w-7/12 flex-shrink-0">
+                  <div className="relative w-full lg:w-7/12 flex-shrink-0">
                     <input
                       onChange={(e) => onChangeHandler(e)}
                       value={shippingData.phone}
@@ -419,7 +422,7 @@ export const Checkout = () => {
                     A dónde lo enviamos?
                   </label>
 
-                  <div className="flex flex-col sm:flex-row">
+                  <div className="flex flex-col gap-3 lg:gap-0 sm:flex-row">
                     <div className="relative flex-shrink-0 sm:w-7/12">
                       <input
                         onChange={(e) => onChangeHandler(e)}
