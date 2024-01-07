@@ -84,9 +84,6 @@ export const Checkout = () => {
     }
 
     getReadyToPay();
-    toast.success(
-      "Estás por realizar el pago, por favor, revisa que tus datos sean los correctos antes de confirmar"
-    );
   };
 
   const getReadyToPay = () => {

@@ -7,9 +7,9 @@ export const MenuIcon: React.FC = () => {
   const { toggleMobileMenu } = useMobileMenu();
 
   return (
-    <div onClick={() => toggleMobileMenu()}>
+    <div className="lg:hidden" onClick={() => toggleMobileMenu()}>
       <FontAwesomeIcon
-        className="lg:hidden text-2xl text-gray-700"
+        className="text-2xl text-gray-700"
         icon={faBars}
       ></FontAwesomeIcon>
     </div>
