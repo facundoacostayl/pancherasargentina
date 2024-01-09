@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
 import { SpinnerCircularFixed } from "spinners-react";
@@ -23,7 +23,11 @@ export const Checkout = () => {
   const [readyToPayState, setReadyToPayState] = useState<boolean>(false);
   const [payWithShippingState, setPayWithShippingState] =
     useState<boolean>(false);
+  const [formWithErrorsState, setFormWithErrorsState] =
+    useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
+
+  const errorsDisplayRef = useRef<null | HTMLParagraphElement>(null);
 
   useEffect(() => {
     setLoading(false);
@@ -80,10 +84,13 @@ export const Checkout = () => {
       (payWithShippingState && !door) ||
       (payWithShippingState && !city)
     ) {
-      toast.error("Hay campos incompletos o incorrectos");
+      //toast.error("Hay campos incompletos o incorrectos");
+      setFormWithErrorsState(true);
+      errorsDisplayRef.current!.scrollIntoView({ behavior: "smooth" });
       return;
     }
 
+    setFormWithErrorsState(false);
     getReadyToPay();
   };
 
@@ -271,10 +278,18 @@ export const Checkout = () => {
                 loading && "opacity-25 pointer-events-none"
               } transition-all duration-300`}
             >
-              <p className="mt-8 text-lg text-gray-700 font-medium">
+              <p
+                ref={errorsDisplayRef}
+                className="mt-8 text-lg text-gray-700 font-medium"
+              >
                 Tipo de entrega
               </p>
               <form className="mt-5 grid gap-6">
+                {formWithErrorsState && (
+                  <div className="py-2 bg-red-500">
+                    <p>Hay campos incompletos o incorrectos</p>
+                  </div>
+                )}
                 <div className="relative">
                   <input
                     onClick={() => togglePayWithShipping(true)}
