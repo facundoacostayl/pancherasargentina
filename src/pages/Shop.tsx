@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { ShoppingCart } from "../components/ShoppingCart";
 import { MobileMenu } from "../components/MobileMenu";
 import { Top } from "../components/Top";
@@ -6,6 +8,12 @@ import { Footer } from "../components/Footer";
 import { ProductList } from "../components/ProductList";
 
 export const Shop = () => {
+  const [productTypeState, setProductTypeState] = useState<string>();
+
+  const changeProductTypeState = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setProductTypeState(e.target.value);
+  };
+
   return (
     <div className="">
       <ShoppingCart></ShoppingCart>
@@ -34,8 +42,12 @@ export const Shop = () => {
                 <option value="best-sellers">Más Vendidos</option>
                 <option value="cheaper">Menor Precio</option>
                 <option value="expensive">Mayor Precio</option>
-                <option value="electric">Eléctricas</option>
-                <option value="gas">A Gas</option>
+                {productTypeState != "carro" && (
+                  <>
+                    <option value="electric">Eléctricas</option>
+                    <option value="gas">A Gas</option>
+                  </>
+                )}
               </select>
             </div>
             <div className="w-2/3 lg:w-full flex items-center">
@@ -49,6 +61,7 @@ export const Shop = () => {
                 className="lg:w-full rounded-md border border-gray-200 p-2 lg:px-4 lg:py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                 name="productType-select"
                 id="productType-select"
+                onChange={(e) => changeProductTypeState(e)}
               >
                 <option value="">Mostrar Todo</option>
                 <option value="panchera">Pancheras</option>
