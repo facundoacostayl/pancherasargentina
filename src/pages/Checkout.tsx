@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import { SpinnerCircularFixed } from "spinners-react";
 import { ToastContainer, toast } from "react-toastify";
@@ -19,7 +20,7 @@ export const Checkout = () => {
     phone: "",
     shippingType: "",
   });
-  const [readyToPayState, setReadyToPay] = useState<boolean>(false);
+  const [readyToPayState, setReadyToPayState] = useState<boolean>(false);
   const [payWithShippingState, setPayWithShippingState] =
     useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
@@ -89,7 +90,7 @@ export const Checkout = () => {
   const getReadyToPay = () => {
     setLoading(true);
     setTimeout(() => {
-      setReadyToPay(!readyToPayState);
+      setReadyToPayState(!readyToPayState);
     }, 2000);
   };
 
@@ -119,9 +120,9 @@ export const Checkout = () => {
             <div className="relative">
               <ul className="relative flex w-full items-center justify-between space-x-2 sm:space-x-4">
                 <li className="flex items-center space-x-3 text-left sm:space-x-4">
-                  <a
+                  <Link
+                    to="/tienda"
                     className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-200 text-xs font-semibold text-emerald-700"
-                    href="#"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -137,7 +138,7 @@ export const Checkout = () => {
                         d="M5 13l4 4L19 7"
                       />
                     </svg>
-                  </a>
+                  </Link>
                   <span className="font-semibold text-gray-900">Tienda</span>
                 </li>
                 <svg
@@ -164,6 +165,7 @@ export const Checkout = () => {
                     2
                   </a>
                   <a
+                    onClick={() => readyToPayState && setReadyToPayState(false)}
                     className={`${
                       !readyToPayState && "hidden"
                     } flex h-6 w-6 items-center justify-center rounded-full bg-emerald-200 text-xs font-semibold text-emerald-700`}

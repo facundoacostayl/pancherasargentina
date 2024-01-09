@@ -106,6 +106,7 @@ export const Contact = () => {
               </label>
               <input
                 onChange={(e) => onChangeHandler(e)}
+                value={clientEmailData.email}
                 type="email"
                 id="email"
                 name="email"
@@ -123,6 +124,7 @@ export const Contact = () => {
               </label>
               <input
                 onChange={(e) => onChangeHandler(e)}
+                value={clientEmailData.subject}
                 type="text"
                 id="subject"
                 name="subject"
