@@ -25,9 +25,12 @@ export const Checkout = () => {
     useState<boolean>(false);
   const [formWithErrorsState, setFormWithErrorsState] =
     useState<boolean>(false);
+  const [formWithShippingTypeErrorState, setFormWithShippingTypeErrorState] =
+    useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const errorsDisplayRef = useRef<null | HTMLParagraphElement>(null);
+  const errorsDisplayRef = useRef<null | HTMLDivElement>(null);
+  const shippingErrorsDisplayRef = useRef<null | HTMLDivElement>(null);
 
   useEffect(() => {
     setLoading(false);
@@ -85,16 +88,27 @@ export const Checkout = () => {
       (payWithShippingState && !city)
     ) {
       //toast.error("Hay campos incompletos o incorrectos");
+
+      if (!shippingType) {
+        setFormWithShippingTypeErrorState(true);
+        shippingErrorsDisplayRef.current!.scrollIntoView({
+          behavior: "smooth",
+        });
+        return;
+      }
+
+      setFormWithShippingTypeErrorState(false);
+
       setFormWithErrorsState(true);
       errorsDisplayRef.current!.scrollIntoView({ behavior: "smooth" });
       return;
     }
 
-    setFormWithErrorsState(false);
     getReadyToPay();
   };
 
   const getReadyToPay = () => {
+    setFormWithErrorsState(false);
     setLoading(true);
     setTimeout(() => {
       setReadyToPayState(!readyToPayState);
@@ -279,17 +293,18 @@ export const Checkout = () => {
               } transition-all duration-300`}
             >
               <p
-                ref={errorsDisplayRef}
-                className="mt-8 text-lg text-gray-700 font-medium"
+                ref={shippingErrorsDisplayRef}
+                className={`${
+                  !formWithShippingTypeErrorState
+                    ? "text-gray-700"
+                    : "py-2 pl-2 text-white bg-red-400"
+                } mt-8 text-lg text-gray-700 font-medium`}
               >
-                Tipo de entrega
+                {!formWithShippingTypeErrorState
+                  ? "Tipo de Entrega"
+                  : "Por favor, seleccione un tipo de entrega"}
               </p>
               <form className="mt-5 grid gap-6">
-                {formWithErrorsState && (
-                  <div className="py-2 bg-red-500">
-                    <p>Hay campos incompletos o incorrectos</p>
-                  </div>
-                )}
                 <div className="relative">
                   <input
                     onClick={() => togglePayWithShipping(true)}
@@ -353,7 +368,15 @@ export const Checkout = () => {
               </form>
             </div>
           </div>
-          <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0">
+          <div
+            ref={errorsDisplayRef}
+            className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0"
+          >
+            {formWithErrorsState && (
+              <div className="py-2 pl-2 mb-2 bg-red-400 text-white font-medium">
+                <p>Hay campos incompletos o incorrectos</p>
+              </div>
+            )}
             <div
               className={`${readyToPayState && "hidden"} ${
                 loading && "opacity-25"
