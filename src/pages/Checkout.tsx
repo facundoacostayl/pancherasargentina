@@ -2,8 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
 import { SpinnerCircularFixed } from "spinners-react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 import { ShoppingCart } from "../components/ShoppingCart";
 import { MobileMenu } from "../components/MobileMenu";
@@ -238,17 +236,6 @@ export const Checkout = () => {
         </div>
         <div className="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32">
           <div className="relative px-4 pt-8">
-            <ToastContainer
-              autoClose={10000}
-              hideProgressBar={true}
-              limit={1}
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-              className="absolute top-0 left-0"
-            />
             <p className="text-xl text-gray-700 font-medium">
               Detalles de compra
             </p>
