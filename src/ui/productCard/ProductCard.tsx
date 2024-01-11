@@ -20,7 +20,7 @@ export const ProductCard: React.FC<props> = ({
 
   return (
     <li key={id} className="p-2 border">
-      <Link to="/producto">
+      <Link to={`/producto/${id}`}>
         <div className="text-center">
           <div className="mx-5 mb-2 pb-4 border-b">
             <img src={image} alt="product.image en src" />

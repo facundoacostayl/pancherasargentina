@@ -14,11 +14,10 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Home />}></Route>
-        <Route path="/pancheras" element={<Shop />}></Route>
-        <Route path="/carros-pancheros" element={<Shop />}></Route>
+        <Route path="/shop" element={<Shop />}></Route>
         <Route path="/contacto" element={<Contact />}></Route>
         <Route path="/sobre-nosotros" element={<About />}></Route>
-        <Route path="/producto" element={<Product />}></Route>
+        <Route path="/producto/:id" element={<Product />}></Route>
         <Route path="/checkout" element={<Checkout />}></Route>
       </Routes>
     </>

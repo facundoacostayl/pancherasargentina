@@ -1,3 +1,7 @@
+import { useProduct } from "../productContext/ProductProvider";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+
 import { ShoppingCart } from "../components/ShoppingCart";
 import { MobileMenu } from "../components/MobileMenu";
 import { Top } from "../components/Top";
@@ -11,6 +15,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTruck } from "@fortawesome/free-solid-svg-icons";
 
 export const Product = () => {
+  const { getProduct, currentProduct } = useProduct();
+  const { id } = useParams();
+
+  useEffect(() => {
+    getProduct(parseInt(id!));
+  }, []);
+
   return (
     <div className="">
       <ShoppingCart></ShoppingCart>
@@ -21,17 +32,15 @@ export const Product = () => {
 
         <div className="relative lg:py-9 bg-white">
           <div className="mx-auto lg:flex lg:justify-center lg:items-center gap-5 px-4 mb-5 lg:mb-0">
-            <img
-              className=""
-              src="https://i.ibb.co/SPSCpFJ/glpanchera5.webp"
-              alt="product"
-            />
+            <img className="" src={currentProduct.image} alt="product" />
             <div className="lg:w-3/4 px-4">
               <div className="mb-5">
                 <h2 className="mb-1 text-3xl lg:text-4xl text-gray-700 font-bold">
-                  Panchera Hot Doggie
+                  {currentProduct.name}
                 </h2>
-                <p className="text-xl lg:text-2xl text-gray-600">$54.000</p>
+                <p className="text-xl lg:text-2xl text-gray-600">
+                  ${currentProduct.price}
+                </p>
               </div>
               <div className="flex flex-col gap-4">
                 <CounterInput></CounterInput>
@@ -39,10 +48,7 @@ export const Product = () => {
               </div>
               <div className="py-5 lg:w-2/4">
                 <p className="text-gray-500 font-thin">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa
-                  explicabo praesentium sint laborum alias placeat cupiditate
-                  tempore dolorum suscipit dolor magnam, natus quidem nihil
-                  atque facilis itaque consequatur illum pariatur.
+                  {currentProduct.description}
                 </p>
               </div>
             </div>
