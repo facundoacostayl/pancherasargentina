@@ -12,14 +12,14 @@ export const ShoppingCartProvider = ({ children }: Props) => {
   const [shoppingCartState, setShoppingCartState] = useState<boolean>(false);
   const [shoppingCartProductList, setshoppingCartProductList] = useState<
     Product[]
-  >([]);
+  >(JSON.parse(localStorage.getItem("shoppingCartProductList")!));
 
   useEffect(() => {
-    const products = JSON.parse(localStorage.getItem("products")!);
-    if (products) {
-      setshoppingCartProductList(products);
-    }
-  }, []);
+    localStorage.setItem(
+      "shoppingCartProductList",
+      JSON.stringify(shoppingCartProductList)
+    );
+  }, [shoppingCartProductList]);
 
   useEffect(() => {
     localStorage.setItem(
