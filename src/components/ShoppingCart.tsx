@@ -4,7 +4,8 @@ import { useShoppingCart } from "../shoppingCartContext/ShoppingCartProvider";
 import { Overlay } from "../ui/overlay";
 
 export const ShoppingCart = () => {
-  const { shoppingCartState, toggleShoppingCart } = useShoppingCart();
+  const { shoppingCartState, toggleShoppingCart, shoppingCartProductList } =
+    useShoppingCart();
 
   return (
     <div>
@@ -24,62 +25,41 @@ export const ShoppingCart = () => {
             Tus Productos
           </h2>
           <ul className="overflow-y-scroll py-8 border-b-8 border-blue-300">
-            <li className="lg:px-2 pb-7">
-              <div className="flex justify-between">
-                <div className="w-full flex items-center gap-2">
-                  <div className="relative ">
-                    <img
-                      className="max-w-[80px] max-h-[70px] lg:max-w-[100px] lg:max-h-[90px] rounded-lg"
-                      src="https://proviamoalmacengourmet.com/img/IMG-20210304-WA0004.jpg"
-                      alt="producto"
-                    />
-                    <span className="absolute top-0 left-0 h-[25px] px-1 m-[0.5] text-center border border-black rounded-full bg-white cursor-pointer transition ease-in-out duration-200 hover:text-white hover:bg-black">
-                      X
-                    </span>
-                  </div>
+            {shoppingCartProductList.map((p) => {
+              return (
+                <li key={p.id} className="lg:px-2 pb-7">
+                  <div className="flex justify-between">
+                    <div className="w-full flex items-center gap-2">
+                      <div className="relative ">
+                        <img
+                          className="max-w-[80px] max-h-[70px] lg:max-w-[100px] lg:max-h-[90px] rounded-lg"
+                          src={p.image}
+                          alt="producto"
+                        />
+                        <span className="absolute top-0 left-0 h-[25px] px-1 m-[0.5] text-center border border-black rounded-full bg-white cursor-pointer transition ease-in-out duration-200 hover:text-white hover:bg-black">
+                          X
+                        </span>
+                      </div>
 
-                  <div className="">
-                    <h4 className="text-base text-gray-600 lg:text-xl whitespace-nowrap">
-                      Nombre Producto
-                    </h4>
-                    <p className="text-gray-500 text-lg">Cantidad</p>
-                    <input className="w-1/4 border rounded-lg" type="number" />
-                  </div>
-                </div>
+                      <div className="">
+                        <h4 className="text-base text-gray-600 lg:text-xl whitespace-nowrap">
+                          {p.name}
+                        </h4>
+                        <p className="text-gray-500 text-lg">Cantidad</p>
+                        <input
+                          className="w-1/4 border rounded-lg"
+                          type="number"
+                        />
+                      </div>
+                    </div>
 
-                <p className="text-gray-400 text-lg font-semibold mt-auto ml-[-15px] lg:ml-0">
-                  $45000
-                </p>
-              </div>
-            </li>
-            <li className="lg:px-2 pb-7">
-              <div className="flex justify-between">
-                <div className="w-full flex items-center gap-2">
-                  <div className="relative ">
-                    <img
-                      className="max-w-[80px] max-h-[70px] lg:max-w-[100px] lg:max-h-[90px] rounded-lg"
-                      src="https://proviamoalmacengourmet.com/img/IMG-20210304-WA0004.jpg"
-                      alt="producto"
-                    />
-                    <span className="absolute top-0 left-0 h-[25px] px-1 m-[0.5] text-center border border-black rounded-full bg-white cursor-pointer transition ease-in-out duration-200 hover:text-white hover:bg-black">
-                      X
-                    </span>
+                    <p className="text-gray-400 text-lg font-semibold mt-auto ml-[-15px] lg:ml-0">
+                      ${p.price}
+                    </p>
                   </div>
-
-                  <div className="">
-                    <h4 className="text-base text-gray-600 lg:text-xl whitespace-nowrap">
-                      Nombre Producto
-                    </h4>
-                    <p className="text-gray-500 text-lg">Cantidad</p>
-                    <input className="w-1/4 border rounded-lg" type="number" />
-                  </div>
-                </div>
-
-                <p className="text-gray-400 text-lg font-semibold mt-auto ml-[-15px] lg:ml-0">
-                  $45000
-                </p>
-              </div>
-            </li>
+                </li>
+              );
+            })}
           </ul>
           <div className="py-2 flex justify-evenly items-center">
             <p className="text-base text-gray-600 lg:text-lg font-semibold">

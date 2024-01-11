@@ -10,20 +10,23 @@ type Props = {
 
 export const ShoppingCartProvider = ({ children }: Props) => {
   const [shoppingCartState, setShoppingCartState] = useState<boolean>(false);
-  const [productList, setProductList] = useState<Product[]>([
-    { id: "", name: "", description: "", price: 0 },
-  ]);
+  const [shoppingCartProductList, setshoppingCartProductList] = useState<
+    Product[]
+  >([]);
 
   useEffect(() => {
     const products = JSON.parse(localStorage.getItem("products")!);
     if (products) {
-      setProductList(products);
+      setshoppingCartProductList(products);
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("productList", JSON.stringify(productList));
-  }, [productList]);
+    localStorage.setItem(
+      "shoppingCartProductList",
+      JSON.stringify(shoppingCartProductList)
+    );
+  }, [shoppingCartProductList]);
 
   const toggleShoppingCart = () => {
     setShoppingCartState(!shoppingCartState);
@@ -36,13 +39,13 @@ export const ShoppingCartProvider = ({ children }: Props) => {
     image: Product["image"]
   ) => {
     const product = { id, name, price, image };
-    setProductList((current) => [...current, product]);
+    setshoppingCartProductList((current) => [...current, product]);
   };
 
   const values = {
     shoppingCartState,
     toggleShoppingCart,
-    productList,
+    shoppingCartProductList,
     addProductToShoppingCart,
   };
 
