@@ -10,7 +10,7 @@ export const MobileMenu = () => {
     <div
       className={`${
         mobileMenuState ? "top-0 left-0" : "top-0 -left-full"
-      } lg:hidden fixed w-full h-full bg-white transition-all duration-[400ms]`}
+      } lg:hidden fixed w-full h-full bg-white transition-all duration-[400ms] z-50`}
     >
       <div className="">
         <span
@@ -26,10 +26,7 @@ export const MobileMenu = () => {
               <Link to="/">Inicio</Link>
             </li>
             <li className="border-t border-gray-200 p-3">
-              <Link to="/pancheras">Pancheras</Link>
-            </li>
-            <li className="border-t border-gray-200 p-3">
-              <Link to="/carros-pancheros">Carros Pancheros</Link>
+              <Link to="/shop">Tienda</Link>
             </li>
             <li className="border-t border-gray-200 p-3">
               <Link to="/contacto">Contacto</Link>

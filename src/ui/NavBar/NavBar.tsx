@@ -9,10 +9,7 @@ export const NavBar: React.FC = () => {
             <Link to="/">Inicio</Link>
           </li>
           <li>
-            <Link to="/pancheras">Pancheras</Link>
-          </li>
-          <li>
-            <Link to="/carros-pancheros">Carros Pancheros</Link>
+            <Link to="/shop">Tienda</Link>
           </li>
           <li>
             <Link to="/contacto">Contacto</Link>

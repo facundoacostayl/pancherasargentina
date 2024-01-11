@@ -140,7 +140,7 @@ export const Checkout = () => {
               <ul className="relative flex w-full items-center justify-between space-x-2 sm:space-x-4">
                 <li className="flex items-center space-x-3 text-left sm:space-x-4">
                   <Link
-                    to="/tienda"
+                    to="/shop"
                     className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-200 text-xs font-semibold text-emerald-700"
                   >
                     <svg
