@@ -12,7 +12,7 @@ export const useProduct = () => useContext(ProductContext);
 export const ProductProvider = ({ children }: Props) => {
   const [productList, setProductList] = useState<Product[]>([]);
   const [currentProduct, setCurrentProduct] = useState<Product>({
-    id: "",
+    id: 0,
     name: "",
     description: "",
     image: "",
