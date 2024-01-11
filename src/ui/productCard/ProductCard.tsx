@@ -1,14 +1,26 @@
+import { useProduct } from "../../productContext/ProductProvider";
+import { Product } from "../../types/product.type";
+
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBagShopping } from "@fortawesome/free-solid-svg-icons";
 
 //import { useShoppingCart } from "../../shoppingCartContext/ShoppingCartProvider";
 
-export const ProductCard: React.FC = () => {
+interface props extends Product {}
+
+export const ProductCard: React.FC<props> = ({
+  id,
+  name,
+  description,
+  image,
+  price,
+}: props) => {
+  const { productList } = useProduct();
   //const { addProductToShoppingCart } = useShoppingCart();
 
   return (
-    <li key={1} className="p-2 border">
+    <li key={productList} className="p-2 border">
       <Link to="/producto">
         <div className="text-center">
           <div className="mx-5 mb-2 pb-4 border-b">
