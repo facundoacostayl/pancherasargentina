@@ -6,9 +6,7 @@ import { faBagShopping } from "@fortawesome/free-solid-svg-icons";
 
 import { useShoppingCart } from "../../shoppingCartContext/ShoppingCartProvider";
 
-interface props extends Product {
-  description?: string;
-}
+interface props extends Product {}
 
 export const ProductCard: React.FC<props> = ({
   id,

@@ -10,16 +10,9 @@ type Props = {
 
 export const ShoppingCartProvider = ({ children }: Props) => {
   const [shoppingCartState, setShoppingCartState] = useState<boolean>(false);
-  const [shoppingCartProductList, setshoppingCartProductList] = useState<
+  const [shoppingCartProductList, setShoppingCartProductList] = useState<
     Product[]
   >(JSON.parse(localStorage.getItem("shoppingCartProductList")!));
-
-  useEffect(() => {
-    localStorage.setItem(
-      "shoppingCartProductList",
-      JSON.stringify(shoppingCartProductList)
-    );
-  }, [shoppingCartProductList]);
 
   useEffect(() => {
     localStorage.setItem(
@@ -38,8 +31,31 @@ export const ShoppingCartProvider = ({ children }: Props) => {
     price: Product["price"],
     image: Product["image"]
   ) => {
-    const product = { id, name, price, image };
-    setshoppingCartProductList((current) => [...current, product]);
+    const product = { id, name, price, image, quantity: 1 };
+    const repeatedProduct = shoppingCartProductList.find(
+      (p) => p.id === product.id
+    );
+    if (repeatedProduct) {
+      setShoppingCartProductList((currentProductList) =>
+        currentProductList.map((p) => {
+          if (p.id === product.id) {
+            return { ...p, quantity: p.quantity! + 1 };
+          }
+          return p;
+        })
+      );
+    } else {
+      setShoppingCartProductList((currentProductList) => [
+        ...currentProductList,
+        product,
+      ]);
+    }
+  };
+
+  const removeProductFromShoppingCart = (id: Product["id"]) => {
+    setShoppingCartProductList((shoppingCartProductList) =>
+      shoppingCartProductList.filter((p) => p.id !== id)
+    );
   };
 
   const values = {
@@ -47,6 +63,7 @@ export const ShoppingCartProvider = ({ children }: Props) => {
     toggleShoppingCart,
     shoppingCartProductList,
     addProductToShoppingCart,
+    removeProductFromShoppingCart,
   };
 
   return (

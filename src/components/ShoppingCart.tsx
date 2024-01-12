@@ -4,8 +4,12 @@ import { useShoppingCart } from "../shoppingCartContext/ShoppingCartProvider";
 import { Overlay } from "../ui/overlay";
 
 export const ShoppingCart = () => {
-  const { shoppingCartState, toggleShoppingCart, shoppingCartProductList } =
-    useShoppingCart();
+  const {
+    shoppingCartState,
+    toggleShoppingCart,
+    shoppingCartProductList,
+    removeProductFromShoppingCart,
+  } = useShoppingCart();
 
   return (
     <div>
@@ -36,7 +40,10 @@ export const ShoppingCart = () => {
                           src={p.image}
                           alt="producto"
                         />
-                        <span className="absolute top-0 left-0 h-[25px] px-1 m-[0.5] text-center border border-black rounded-full bg-white cursor-pointer transition ease-in-out duration-200 hover:text-white hover:bg-black">
+                        <span
+                          onClick={() => removeProductFromShoppingCart(p.id)}
+                          className="absolute top-0 left-0 h-[25px] px-1 m-[0.5] text-center border border-black rounded-full bg-white cursor-pointer transition ease-in-out duration-200 hover:text-white hover:bg-black"
+                        >
                           X
                         </span>
                       </div>
