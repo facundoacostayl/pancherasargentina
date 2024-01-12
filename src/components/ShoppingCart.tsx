@@ -1,5 +1,7 @@
 import { useShoppingCart } from "../shoppingCartContext/ShoppingCartProvider";
 
+import { Link } from "react-router-dom";
+
 //UI
 import { Overlay } from "../ui/overlay";
 
@@ -56,6 +58,7 @@ export const ShoppingCart = () => {
                         <input
                           className="w-1/4 border rounded-lg"
                           type="number"
+                          value={p.quantity}
                         />
                       </div>
                     </div>
@@ -77,12 +80,13 @@ export const ShoppingCart = () => {
             </p>
           </div>
           <div className="py-10 flex flex-col items-center justify-center gap-5">
-            <p
+            <Link
+              to="/shop"
               onClick={() => toggleShoppingCart()}
               className="font-semibold text-base text-gray-600 lg:text-lg cursor-pointer transition ease-in-out duration-200 hover:text-gray-400"
             >
               VOLVER A LA TIENDA
-            </p>
+            </Link>
             <p className="p-3 font-semibold text-base lg:text-lg text-white border-2 border-blue-300 rounded-full bg-blue-300 cursor-pointer transition ease-in-out duration-200 hover:text-blue-300 hover:bg-white">
               Finalizar Compra
             </p>
