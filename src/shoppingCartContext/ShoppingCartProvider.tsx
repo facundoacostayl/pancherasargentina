@@ -1,8 +1,6 @@
 import { ShoppingCartContext } from "./ShoppingCartContext";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Product } from "../types/product.type";
-
-export const useShoppingCart = () => useContext(ShoppingCartContext);
 
 type Props = {
   children: JSX.Element | JSX.Element[];
@@ -13,6 +11,7 @@ export const ShoppingCartProvider = ({ children }: Props) => {
   const [shoppingCartProductList, setShoppingCartProductList] = useState<
     Product[]
   >(JSON.parse(localStorage.getItem("shoppingCartProductList")!));
+  const [productQuantity, setProductQuantity] = useState<number>();
 
   useEffect(() => {
     localStorage.setItem(
@@ -23,6 +22,11 @@ export const ShoppingCartProvider = ({ children }: Props) => {
 
   const toggleShoppingCart = () => {
     setShoppingCartState(!shoppingCartState);
+  };
+
+  const getProductQuantity = (id: Product["id"]) => {
+    const product = shoppingCartProductList.find((p) => p.id === id);
+    if (product) setProductQuantity(product.quantity);
   };
 
   const addProductToShoppingCart = (
@@ -61,6 +65,8 @@ export const ShoppingCartProvider = ({ children }: Props) => {
   const values = {
     shoppingCartState,
     toggleShoppingCart,
+    productQuantity,
+    getProductQuantity,
     shoppingCartProductList,
     addProductToShoppingCart,
     removeProductFromShoppingCart,

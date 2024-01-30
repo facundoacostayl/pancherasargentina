@@ -1,4 +1,10 @@
-export const CounterInput = () => {
+type props = {
+  currentProductQuantity: number;
+};
+
+export const CounterInput: React.FC<props> = ({
+  currentProductQuantity,
+}: props) => {
   return (
     <form className="w-full lg:w-1/4 mx-auto lg:mx-0">
       <label
@@ -36,7 +42,7 @@ export const CounterInput = () => {
           data-input-counter
           aria-describedby="helper-text-explanation"
           className="border-y border-gray-300 h-11 text-center text-gray-900 text-base block w-full py-2.5 outline-none"
-          placeholder="1"
+          value={currentProductQuantity}
           required
         ></input>
         <button

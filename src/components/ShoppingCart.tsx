@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 //UI
 import { Overlay } from "../ui/overlay";
+import { CounterInput } from "../ui/CounterInput";
 
 export const ShoppingCart = () => {
   const {
@@ -54,12 +55,9 @@ export const ShoppingCart = () => {
                         <h4 className="text-base text-gray-600 lg:text-xl whitespace-nowrap">
                           {p.name}
                         </h4>
-                        <p className="text-gray-500 text-lg">Cantidad</p>
-                        <input
-                          className="w-1/4 border rounded-lg"
-                          type="number"
-                          value={p.quantity}
-                        />
+                        <CounterInput
+                          currentProductQuantity={p.quantity!}
+                        ></CounterInput>
                       </div>
                     </div>
 

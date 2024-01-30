@@ -4,6 +4,8 @@ import { Product } from "../types/product.type";
 type ShoppingCartContextProps = {
   shoppingCartState: boolean;
   toggleShoppingCart: VoidFunction;
+  productQuantity: Product["quantity"];
+  getProductQuantity: (id: Product["id"]) => void;
   shoppingCartProductList: Product[];
   addProductToShoppingCart: (
     id: Product["id"],

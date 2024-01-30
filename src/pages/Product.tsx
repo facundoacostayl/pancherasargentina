@@ -1,4 +1,5 @@
 import { useProduct } from "../productContext/ProductProvider";
+import { useShoppingCart } from "../shoppingCartContext/ShoppingCartProvider";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
@@ -16,10 +17,15 @@ import { faTruck } from "@fortawesome/free-solid-svg-icons";
 
 export const Product = () => {
   const { getProduct, currentProduct } = useProduct();
+  const { getProductQuantity, productQuantity } = useShoppingCart();
   const { id } = useParams();
 
   useEffect(() => {
     getProduct(parseInt(id!));
+  }, []);
+
+  useEffect(() => {
+    getProductQuantity(parseInt(id!));
   }, []);
 
   return (
@@ -43,7 +49,9 @@ export const Product = () => {
                 </p>
               </div>
               <div className="flex flex-col gap-4">
-                <CounterInput></CounterInput>
+                <CounterInput
+                  currentProductQuantity={productQuantity!}
+                ></CounterInput>
                 <AddButton></AddButton>
               </div>
               <div className="py-5 lg:w-2/4">
