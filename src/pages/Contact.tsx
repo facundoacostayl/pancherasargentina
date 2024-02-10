@@ -32,6 +32,8 @@ export const Contact = () => {
         "Correo enviado correctamente, el mismo será respondido a la brevedad. Gracias por su consulta!"
       );
     }
+
+    return response;
   };
 
   const sanitizeValue = (value: string, name: string) => {
@@ -66,7 +68,7 @@ export const Contact = () => {
     });
   };
 
-  const onSubmitClientEmail = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmitClientEmail = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const email = clientEmailData.clientEmail;
@@ -84,7 +86,10 @@ export const Contact = () => {
     }, 2000);
 
     //SEND EMAIL FUNCTION
-    sendNewEmail(clientEmailData);
+    const newEmail = await sendNewEmail(clientEmailData);
+    if (newEmail) {
+      setClientEmailData({ clientEmail: "", subject: "", message: "" });
+    }
   };
 
   return (
@@ -157,6 +162,7 @@ export const Contact = () => {
               </label>
               <textarea
                 onChange={(e) => onChangeHandler(e)}
+                value={clientEmailData.message}
                 id="message"
                 name="message"
                 rows={6}
