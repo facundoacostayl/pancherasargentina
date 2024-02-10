@@ -1,5 +1,5 @@
 export type ClientEmail = {
-  email: string;
+  clientEmail: string;
   subject: string;
   message: string;
 };

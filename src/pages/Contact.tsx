@@ -14,16 +14,30 @@ import { Footer } from "../components/Footer";
 
 export const Contact = () => {
   const [clientEmailData, setClientEmailData] = useState<ClientEmail>({
-    email: "",
+    clientEmail: "",
     subject: "",
     message: "",
   });
   const [loading, setLoading] = useState<boolean>(false);
 
+  const sendNewEmail = async (newEmail: ClientEmail) => {
+    const response = await fetch("http://localhost:8080/api/v1/email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newEmail),
+    });
+
+    if (response) {
+      toast.success(
+        "Correo enviado correctamente, el mismo será respondido a la brevedad. Gracias por su consulta!"
+      );
+    }
+  };
+
   const sanitizeValue = (value: string, name: string) => {
     let newValue = "";
 
-    if (name === "email") {
+    if (name === "clientEmail") {
       newValue = value.replace(
         /(?:[a-z0-9+!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/i,
         ""
@@ -55,7 +69,7 @@ export const Contact = () => {
   const onSubmitClientEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const email = clientEmailData.email;
+    const email = clientEmailData.clientEmail;
     const subject = clientEmailData.subject;
     const message = clientEmailData.message;
 
@@ -70,6 +84,7 @@ export const Contact = () => {
     }, 2000);
 
     //SEND EMAIL FUNCTION
+    sendNewEmail(clientEmailData);
   };
 
   return (
@@ -99,17 +114,17 @@ export const Contact = () => {
           >
             <div>
               <label
-                htmlFor="email"
+                htmlFor="clientEmail"
                 className="block mb-2 text-sm font-medium text-gray-500"
               >
                 Tu E-mail
               </label>
               <input
                 onChange={(e) => onChangeHandler(e)}
-                value={clientEmailData.email}
+                value={clientEmailData.clientEmail}
                 type="email"
-                id="email"
-                name="email"
+                id="clientEmail"
+                name="clientEmail"
                 className="shadow-sm bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-orange-400 focus:border-orange-400 block w-full p-2.5"
                 placeholder="tucorreo@ejemplo.com"
                 required

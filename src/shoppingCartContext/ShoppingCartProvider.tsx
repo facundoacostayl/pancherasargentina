@@ -1,9 +1,14 @@
+import { useContext } from "react";
 import { ShoppingCartContext } from "./ShoppingCartContext";
 import { useEffect, useState } from "react";
 import { Product } from "../types/product.type";
 
 type Props = {
   children: JSX.Element | JSX.Element[];
+};
+
+export const useShoppingCart = () => {
+  return useContext(ShoppingCartContext);
 };
 
 export const ShoppingCartProvider = ({ children }: Props) => {
