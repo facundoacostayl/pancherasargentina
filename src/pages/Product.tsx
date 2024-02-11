@@ -59,8 +59,12 @@ export const Product = () => {
         <NavBar></NavBar>
 
         <div className="relative lg:py-9 bg-white">
-          <div className="mx-auto lg:flex lg:justify-center lg:items-center gap-5 px-4 mb-5 lg:mb-0">
-            <img className="" src={currentProduct.image} alt="product" />
+          <div className="lg:min-h-[520px] mx-auto lg:flex lg:justify-center lg:items-center gap-5 px-4 mb-5 lg:mb-0">
+            <img
+              className=""
+              src="https://i.ibb.co/SPSCpFJ/glpanchera5.webp"
+              alt="product"
+            />
             <div className="lg:w-3/4 px-4">
               <div className="mb-5">
                 <h2 className="mb-1 text-3xl lg:text-4xl text-gray-700 font-bold">
