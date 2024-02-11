@@ -1,6 +1,6 @@
 import { useProduct } from "../productContext/ProductProvider";
 import { useShoppingCart } from "../shoppingCartContext/ShoppingCartProvider";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { ShoppingCart } from "../components/ShoppingCart";
@@ -15,10 +15,28 @@ import { ShippingPriceComponent } from "../ui/shippingPriceComponent";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTruck } from "@fortawesome/free-solid-svg-icons";
 
+import { ShippingLocation } from "../types/shipping.location";
+
 export const Product = () => {
   const { getProduct, currentProduct } = useProduct();
   const { getProductQuantity, productQuantity } = useShoppingCart();
   const { id } = useParams();
+  const [shippingLocations, setShippingLocations] = useState<
+    ShippingLocation[]
+  >([
+    {
+      locationName: "",
+      shippingPrice: 0,
+    },
+  ]);
+
+  const getShippingPrices = async () => {
+    const response = await fetch(
+      "http://localhost:8080/api/v1/shippingLocation"
+    );
+    const parseRes = await response.json();
+    setShippingLocations(parseRes);
+  };
 
   useEffect(() => {
     getProduct(parseInt(id!));
@@ -26,6 +44,10 @@ export const Product = () => {
 
   useEffect(() => {
     getProductQuantity(parseInt(id!));
+  }, []);
+
+  useEffect(() => {
+    getShippingPrices();
   }, []);
 
   return (
@@ -70,22 +92,14 @@ export const Product = () => {
                   icon={faTruck}
                 ></FontAwesomeIcon>
                 <div className="flex flex-col gap-3">
-                  <ShippingPriceComponent
-                    price={2500}
-                    location={"CABA"}
-                  ></ShippingPriceComponent>
-                  <ShippingPriceComponent
-                    price={4000}
-                    location={"GBA"}
-                  ></ShippingPriceComponent>
-                  <ShippingPriceComponent
-                    price={7000}
-                    location={"Buenos Aires"}
-                  ></ShippingPriceComponent>
-                  <ShippingPriceComponent
-                    price={9000}
-                    location={"Interior"}
-                  ></ShippingPriceComponent>
+                  {shippingLocations.map((item) => {
+                    return (
+                      <ShippingPriceComponent
+                        price={item.shippingPrice}
+                        location={item.locationName}
+                      ></ShippingPriceComponent>
+                    );
+                  })}
                 </div>
               </div>
             </div>
