@@ -18,11 +18,13 @@ export const ShoppingCartIcon: React.FC = () => {
             icon={faShoppingCart}
           ></FontAwesomeIcon>
         </div>
-        <div className="w-3/4 h-full flex items-center justify-center border rounded-r-md ">
-          <p className="text-lg font-medium">
-            {shoppingCartProductList.length}
-          </p>
-        </div>
+        {shoppingCartProductList && (
+          <div className="w-3/4 h-full flex items-center justify-center border rounded-r-md ">
+            <p className="text-lg font-medium">
+              {shoppingCartProductList.length}
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
