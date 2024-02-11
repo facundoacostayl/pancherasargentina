@@ -32,46 +32,48 @@ export const ShoppingCart = () => {
             Tus Productos
           </h2>
           <ul className="overflow-y-scroll py-8 border-b-8 border-blue-300">
-            {shoppingCartProductList
-              ? shoppingCartProductList.map((p) => {
-                  return (
-                    <li key={p.id} className="lg:px-2 pb-7">
-                      <div className="flex justify-between">
-                        <div className="w-full flex items-center gap-2">
-                          <div className="relative ">
-                            <img
-                              className="max-w-[80px] max-h-[70px] lg:max-w-[100px] lg:max-h-[90px] rounded-lg"
-                              src={p.image}
-                              alt="producto"
-                            />
-                            <span
-                              onClick={() =>
-                                removeProductFromShoppingCart(p.id)
-                              }
-                              className="absolute top-0 left-0 h-[25px] px-1 m-[0.5] text-center border border-black rounded-full bg-white cursor-pointer transition ease-in-out duration-200 hover:text-white hover:bg-black"
-                            >
-                              X
-                            </span>
-                          </div>
-
-                          <div className="">
-                            <h4 className="text-base text-gray-600 lg:text-xl whitespace-nowrap">
-                              {p.name}
-                            </h4>
-                            <CounterInput
-                              currentProductQuantity={p.quantity!}
-                            ></CounterInput>
-                          </div>
+            {shoppingCartProductList ? (
+              shoppingCartProductList.map((p) => {
+                return (
+                  <li key={p.id} className="lg:px-2 pb-7">
+                    <div className="flex justify-between">
+                      <div className="w-full flex items-center gap-2">
+                        <div className="relative ">
+                          <img
+                            className="max-w-[80px] max-h-[70px] lg:max-w-[100px] lg:max-h-[90px] rounded-lg"
+                            src={p.image}
+                            alt="producto"
+                          />
+                          <span
+                            onClick={() => removeProductFromShoppingCart(p.id)}
+                            className="absolute top-0 left-0 h-[25px] px-1 m-[0.5] text-center border border-black rounded-full bg-white cursor-pointer transition ease-in-out duration-200 hover:text-white hover:bg-black"
+                          >
+                            X
+                          </span>
                         </div>
 
-                        <p className="text-gray-400 text-lg font-semibold mt-auto ml-[-15px] lg:ml-0">
-                          ${p.price}
-                        </p>
+                        <div className="">
+                          <h4 className="text-base text-gray-600 lg:text-xl whitespace-nowrap">
+                            {p.name}
+                          </h4>
+                          <CounterInput
+                            currentProductQuantity={p.quantity!}
+                          ></CounterInput>
+                        </div>
                       </div>
-                    </li>
-                  );
-                })
-              : "No hay productos en el carrito"}
+
+                      <p className="text-gray-400 text-lg font-semibold mt-auto ml-[-15px] lg:ml-0">
+                        ${p.price}
+                      </p>
+                    </div>
+                  </li>
+                );
+              })
+            ) : (
+              <p className="text-center text-base text-gray-600">
+                No hay productos en el carrito
+              </p>
+            )}
           </ul>
           <div className="py-2 flex justify-evenly items-center">
             <p className="text-base text-gray-600 lg:text-lg font-semibold">
