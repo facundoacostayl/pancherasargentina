@@ -17,7 +17,7 @@ export const ProductCard: React.FC<props> = ({
   const { addProductToShoppingCart } = useShoppingCart();
 
   return (
-    <li key={id} className="p-2 border">
+    <li className="p-2 border">
       <div className="text-center">
         <Link to={`/producto/${id}`}>
           <div className="mx-5 mb-2 pb-4 border-b">

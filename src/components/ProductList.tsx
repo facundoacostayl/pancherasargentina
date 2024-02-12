@@ -19,6 +19,7 @@ export const ProductList = () => {
             return (
               <ProductCard
                 id={p.id}
+                key={p.id}
                 name={p.name}
                 image={p.image || "https://i.ibb.co/SPSCpFJ/glpanchera5.webp"}
                 price={p.price}
