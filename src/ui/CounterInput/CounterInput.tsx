@@ -43,6 +43,7 @@ export const CounterInput: React.FC<props> = ({
           aria-describedby="helper-text-explanation"
           className="border-y border-gray-300 h-11 text-center text-gray-900 text-base block w-full py-2.5 outline-none"
           value={currentProductQuantity}
+          readOnly={true}
           required
         ></input>
         <button
