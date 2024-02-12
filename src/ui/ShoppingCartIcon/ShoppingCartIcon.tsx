@@ -4,7 +4,8 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { useShoppingCart } from "../../shoppingCartContext/ShoppingCartProvider";
 
 export const ShoppingCartIcon: React.FC = () => {
-  const { toggleShoppingCart, shoppingCartProductList } = useShoppingCart();
+  const { toggleShoppingCart, shoppingCartProductsQuantity } =
+    useShoppingCart();
 
   return (
     <div
@@ -18,13 +19,13 @@ export const ShoppingCartIcon: React.FC = () => {
             icon={faShoppingCart}
           ></FontAwesomeIcon>
         </div>
-        {shoppingCartProductList && (
+        {
           <div className="w-3/4 h-full flex items-center justify-center border rounded-r-md ">
             <p className="text-lg font-medium">
-              {shoppingCartProductList.length}
+              {shoppingCartProductsQuantity}
             </p>
           </div>
-        )}
+        }
       </div>
     </div>
   );

@@ -17,12 +17,22 @@ export const ShoppingCartProvider = ({ children }: Props) => {
     Product[]
   >(JSON.parse(localStorage.getItem("shoppingCartProductList")!) || []);
   const [productQuantity, setProductQuantity] = useState<number>();
+  const [shoppingCartProductsQuantity, setShoppingCartProductsQuantity] =
+    useState<number>(0);
 
   useEffect(() => {
     localStorage.setItem(
       "shoppingCartProductList",
       JSON.stringify(shoppingCartProductList)
     );
+  }, [shoppingCartProductList]);
+
+  useEffect(() => {
+    let totalOfProducts = 0;
+    shoppingCartProductList.forEach((p) => {
+      totalOfProducts += p.quantity!;
+    });
+    setShoppingCartProductsQuantity(totalOfProducts);
   }, [shoppingCartProductList]);
 
   const toggleShoppingCart = () => {
@@ -41,7 +51,7 @@ export const ShoppingCartProvider = ({ children }: Props) => {
     image: Product["image"]
   ) => {
     const product = { id, name, price, image, quantity: 1 };
-    /*const repeatedProduct = shoppingCartProductList.find(
+    const repeatedProduct = shoppingCartProductList.find(
       (p) => p.id === product.id
     );
     if (repeatedProduct) {
@@ -53,12 +63,14 @@ export const ShoppingCartProvider = ({ children }: Props) => {
           return p;
         })
       );
-    } else {*/
-    setShoppingCartProductList((currentProductList) => [
-      ...currentProductList,
-      product,
-    ]);
+    } else {
+      setShoppingCartProductList((currentProductList) => [
+        ...currentProductList,
+        product,
+      ]);
+    }
   };
+
   const removeProductFromShoppingCart = (id: Product["id"]) => {
     setShoppingCartProductList((shoppingCartProductList) =>
       shoppingCartProductList.filter((p) => p.id !== id)
@@ -73,6 +85,7 @@ export const ShoppingCartProvider = ({ children }: Props) => {
     shoppingCartProductList,
     addProductToShoppingCart,
     removeProductFromShoppingCart,
+    shoppingCartProductsQuantity,
   };
 
   return (
