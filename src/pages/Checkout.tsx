@@ -11,6 +11,7 @@ import { NavBar } from "../ui/NavBar";
 import { Footer } from "../components/Footer";
 
 import { Shipping } from "../types/shipping.type";
+import { ShippingLocation } from "../types/shipping.location";
 
 export const Checkout = () => {
   const [shippingData, setShippingData] = useState<Shipping>({
@@ -27,6 +28,7 @@ export const Checkout = () => {
   const [formWithShippingTypeErrorState, setFormWithShippingTypeErrorState] =
     useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
+  const [shippingLocationPrice, setShippingLocationPrice] = useState<number>(0);
 
   const { shoppingCartProductList, shoppingCartTotal } = useShoppingCart();
 
@@ -62,6 +64,10 @@ export const Checkout = () => {
       e.currentTarget.value,
       e.currentTarget.name
     );
+
+    if (e.currentTarget.name === "city") {
+      getShippingLocationPrice(e.currentTarget.value);
+    }
 
     setShippingData({
       ...shippingData,
@@ -118,6 +124,16 @@ export const Checkout = () => {
 
   const togglePayWithShipping = (bool: boolean) => {
     setPayWithShippingState(bool);
+  };
+
+  const getShippingLocationPrice = async (location: string) => {
+    const response = await fetch(
+      "http://localhost:8080/api/v1/shippingLocation"
+    );
+    const parseRes: ShippingLocation[] = await response.json();
+    const locationItem = parseRes.find((l) => l.locationName === location);
+    const locationItemPrice = locationItem?.shippingPrice;
+    setShippingLocationPrice(locationItemPrice!);
   };
 
   return (
@@ -482,7 +498,9 @@ export const Checkout = () => {
                       <option value="">-- Localidad --</option>
                       <option value="CABA">CABA</option>
                       <option value="GBA">GBA</option>
-                      <option value="Buenos Aires">Buenos Aires</option>
+                      <option value="Buenos Aires Interior">
+                        Buenos Aires
+                      </option>
                       <option value="Interior">Interior</option>
                     </select>
                   </div>
@@ -499,13 +517,15 @@ export const Checkout = () => {
                   </div>
                   <div className="flex items-center justify-between">
                     <p className="text-sm font-medium text-gray-700">Envío</p>
-                    <p className="font-semibold text-gray-700">$8.00</p>
+                    <p className="font-semibold text-gray-700">
+                      ${shippingLocationPrice}
+                    </p>
                   </div>
                 </div>
                 <div className="mt-6 flex items-center justify-between">
                   <p className="text-sm font-medium text-gray-700">Total</p>
                   <p className="text-2xl font-semibold text-gray-700">
-                    $408.00
+                    ${shoppingCartTotal + shippingLocationPrice}
                   </p>
                 </div>
               </div>
