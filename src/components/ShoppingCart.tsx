@@ -38,7 +38,7 @@ export const ShoppingCart = () => {
                 return (
                   <li key={p.id} className="lg:px-2 pb-7">
                     <div className="flex justify-between">
-                      <div className="w-full flex items-center gap-2">
+                      <div className="w-3/4 flex items-center gap-2">
                         <div className="relative ">
                           <img
                             className="max-w-[80px] max-h-[70px] lg:max-w-[100px] lg:max-h-[90px] rounded-lg"
@@ -63,7 +63,7 @@ export const ShoppingCart = () => {
                         </div>
                       </div>
 
-                      <p className="text-gray-400 text-lg font-semibold mt-auto ml-[-15px] lg:ml-0">
+                      <p className="text-gray-400 text-lg font-semibold mt-auto lg:ml-0">
                         ${p.price * p.quantity!}
                       </p>
                     </div>

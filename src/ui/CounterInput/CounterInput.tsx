@@ -13,7 +13,7 @@ export const CounterInput: React.FC<props> = ({
       >
         Cantidad:
       </label>
-      <div className="relative flex items-center w-full">
+      <div className="relative flex items-center w-3/4">
         <button
           type="button"
           id="decrement-button"
@@ -41,7 +41,7 @@ export const CounterInput: React.FC<props> = ({
           id="quantity-input"
           data-input-counter
           aria-describedby="helper-text-explanation"
-          className="border-y border-gray-300 h-11 text-center text-gray-900 text-base block w-full py-2.5 outline-none"
+          className="w-7 lg:w-11 h-11 text-center border-y border-gray-300 text-gray-900 text-base block py-2.5 outline-none"
           value={currentProductQuantity}
           readOnly={true}
           required
