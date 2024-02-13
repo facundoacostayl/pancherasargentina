@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { useShoppingCart } from "../shoppingCartContext/ShoppingCartProvider";
 
 import { SpinnerCircularFixed } from "spinners-react";
 
@@ -26,6 +27,8 @@ export const Checkout = () => {
   const [formWithShippingTypeErrorState, setFormWithShippingTypeErrorState] =
     useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
+
+  const { shoppingCartProductList } = useShoppingCart();
 
   const errorsDisplayRef = useRef<null | HTMLDivElement>(null);
   const shippingErrorsDisplayRef = useRef<null | HTMLDivElement>(null);
@@ -244,32 +247,29 @@ export const Checkout = () => {
               para continuar.
             </p>
             <div className="mt-8 space-y-3 rounded-lg border bg-white px-2 py-4 sm:px-6">
-              <div className="flex flex-col rounded-lg bg-white sm:flex-row">
-                <img
-                  className="m-2 h-24 w-28 rounded-md border object-cover object-center"
-                  src="https://i.ibb.co/SPSCpFJ/glpanchera5.webp"
-                  alt=""
-                />
-                <div className="flex w-full flex-col px-4 py-4">
-                  <span className="font-semibold text-gray-600">
-                    Panchera SP16 Simple Eléctrica
-                  </span>
-                  <p className="text-lg text-gray-700 font-bold">$138.99</p>
-                </div>
-              </div>
-              <div className="flex flex-col rounded-lg bg-white sm:flex-row">
-                <img
-                  className="m-2 h-24 w-28 rounded-md border object-cover object-center"
-                  src="https://i.ibb.co/SPSCpFJ/glpanchera5.webp"
-                  alt=""
-                />
-                <div className="flex w-full flex-col px-4 py-4">
-                  <span className="font-semibold text-gray-600">
-                    Panchera SP25 Simple a Gas
-                  </span>
-                  <p className="text-lg text-gray-700 font-bold">$240.99</p>
-                </div>
-              </div>
+              {shoppingCartProductList.length ? (
+                shoppingCartProductList.map((p) => {
+                  return (
+                    <div className="flex flex-col rounded-lg bg-white sm:flex-row">
+                      <img
+                        className="m-2 h-24 w-28 rounded-md border object-cover object-center"
+                        src="https://i.ibb.co/SPSCpFJ/glpanchera5.webp"
+                        alt=""
+                      />
+                      <div className="flex w-full flex-col px-4 py-4">
+                        <span className="font-semibold text-gray-600">
+                          {p.name}
+                        </span>
+                        <p className="text-lg text-gray-700 font-bold">
+                          ${p.price}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })
+              ) : (
+                <p className="text-gray-500">No hay productos en el carrito</p>
+              )}
             </div>
 
             <div
