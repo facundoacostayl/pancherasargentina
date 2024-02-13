@@ -19,6 +19,7 @@ export const ShoppingCartProvider = ({ children }: Props) => {
   const [productQuantity, setProductQuantity] = useState<number>();
   const [shoppingCartProductsQuantity, setShoppingCartProductsQuantity] =
     useState<number>(0);
+  const [shoppingCartTotal, setShoppingCartTotal] = useState<number>(0);
 
   useEffect(() => {
     localStorage.setItem(
@@ -33,6 +34,14 @@ export const ShoppingCartProvider = ({ children }: Props) => {
       totalOfProducts += p.quantity!;
     });
     setShoppingCartProductsQuantity(totalOfProducts);
+  }, [shoppingCartProductList]);
+
+  useEffect(() => {
+    let total = 0;
+    shoppingCartProductList.forEach((p) => {
+      total += p.price * p.quantity!;
+    });
+    setShoppingCartTotal(total);
   }, [shoppingCartProductList]);
 
   const toggleShoppingCart = () => {
@@ -86,6 +95,7 @@ export const ShoppingCartProvider = ({ children }: Props) => {
     addProductToShoppingCart,
     removeProductFromShoppingCart,
     shoppingCartProductsQuantity,
+    shoppingCartTotal,
   };
 
   return (

@@ -12,6 +12,7 @@ export const ShoppingCart = () => {
     toggleShoppingCart,
     shoppingCartProductList,
     removeProductFromShoppingCart,
+    shoppingCartTotal,
   } = useShoppingCart();
 
   return (
@@ -63,7 +64,7 @@ export const ShoppingCart = () => {
                       </div>
 
                       <p className="text-gray-400 text-lg font-semibold mt-auto ml-[-15px] lg:ml-0">
-                        ${p.price}
+                        ${p.price * p.quantity!}
                       </p>
                     </div>
                   </li>
@@ -80,7 +81,7 @@ export const ShoppingCart = () => {
               Subtotal:
             </p>
             <p className="text-xl lg:text-2xl text-gray-400 font-semibold">
-              $45000.00
+              ${shoppingCartTotal}
             </p>
           </div>
           <div className="py-10 flex flex-col items-center justify-center gap-5">

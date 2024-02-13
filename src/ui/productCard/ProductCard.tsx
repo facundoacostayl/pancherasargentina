@@ -28,7 +28,7 @@ export const ProductCard: React.FC<props> = ({
         <p className="text-2xl text-orange-500 font-medium">${price}</p>
         <div
           onClick={() => addProductToShoppingCart(id, name, price, image)}
-          className="inline-block border rounded-xl p-3 mt-2 mb-1 text-gray-800 hover:bg-gray-700 hover:text-white transition-all duration-200"
+          className="inline-block cursor-pointer border rounded-xl p-3 mt-2 mb-1 text-gray-800 hover:bg-gray-700 hover:text-white transition-all duration-200"
         >
           <FontAwesomeIcon
             className="text-3xl"

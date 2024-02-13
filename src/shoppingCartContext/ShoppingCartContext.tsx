@@ -15,6 +15,7 @@ type ShoppingCartContextProps = {
   ) => void;
   removeProductFromShoppingCart: (id: Product["id"]) => void;
   shoppingCartProductsQuantity: number;
+  shoppingCartTotal: number;
 };
 
 export const ShoppingCartContext = createContext<ShoppingCartContextProps>(
