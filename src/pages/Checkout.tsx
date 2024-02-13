@@ -28,7 +28,7 @@ export const Checkout = () => {
     useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const { shoppingCartProductList } = useShoppingCart();
+  const { shoppingCartProductList, shoppingCartTotal } = useShoppingCart();
 
   const errorsDisplayRef = useRef<null | HTMLDivElement>(null);
   const shippingErrorsDisplayRef = useRef<null | HTMLDivElement>(null);
@@ -238,30 +238,28 @@ export const Checkout = () => {
           </div>
         </div>
         <div className="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32">
-          <div className="relative px-4 pt-8">
+          <div className="relative px-4 pt-6">
             <p className="text-xl text-gray-700 font-medium">
               Detalles de compra
             </p>
             <p className="text-gray-400">
-              Revisá tus productos. Por favor, completa el formulario de compra
+              Revisá tus productos. Por favor, completá el formulario de compra
               para continuar.
             </p>
-            <div className="mt-8 space-y-3 rounded-lg border bg-white px-2 py-4 sm:px-6">
+            <div className="max-h-[300px] overflow-scroll mt-8 space-y-3 rounded-lg border bg-white px-2 py-3 sm:px-6">
               {shoppingCartProductList.length ? (
                 shoppingCartProductList.map((p) => {
                   return (
-                    <div className="w-full flex flex-row flex-between">
-                      <div className="w-full flex flex-col rounded-lg bg-white sm:flex-row">
+                    <div className="w-full flex flex-row flex-between px-2 lg:px-0">
+                      <div className="w-full flex flex-row rounded-lg bg-white">
                         <img
-                          className="m-2 h-24 w-28 rounded-md border object-cover object-center"
+                          className="h-14 w-16 lg:h-20 lg:w-24 lg:m-2 rounded-md border object-cover object-center"
                           src="https://i.ibb.co/SPSCpFJ/glpanchera5.webp"
                           alt=""
                         />
                         <div className="flex w-full flex-col px-4 py-4">
-                          <span className="font-semibold text-gray-600">
-                            {p.name}
-                          </span>
-                          <p className="text-lg text-gray-700 font-bold">
+                          <span className="text-gray-600">{p.name}</span>
+                          <p className="text-lg text-gray-700 font-semibold">
                             ${p.price * p.quantity!}
                           </p>
                         </div>
@@ -362,7 +360,7 @@ export const Checkout = () => {
           </div>
           <div
             ref={errorsDisplayRef}
-            className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0"
+            className="mt-10 bg-gray-50 px-4 pt-6 lg:mt-0"
           >
             {formWithErrorsState && (
               <div className="py-2 pl-2 mb-2 bg-red-400 text-white font-medium">
@@ -495,7 +493,9 @@ export const Checkout = () => {
                     <p className="text-sm font-medium text-gray-700">
                       Subtotal
                     </p>
-                    <p className="font-semibold text-gray-700">$399.00</p>
+                    <p className="font-semibold text-gray-700">
+                      ${shoppingCartTotal}
+                    </p>
                   </div>
                   <div className="flex items-center justify-between">
                     <p className="text-sm font-medium text-gray-700">Envío</p>
