@@ -250,19 +250,24 @@ export const Checkout = () => {
               {shoppingCartProductList.length ? (
                 shoppingCartProductList.map((p) => {
                   return (
-                    <div className="flex flex-col rounded-lg bg-white sm:flex-row">
-                      <img
-                        className="m-2 h-24 w-28 rounded-md border object-cover object-center"
-                        src="https://i.ibb.co/SPSCpFJ/glpanchera5.webp"
-                        alt=""
-                      />
-                      <div className="flex w-full flex-col px-4 py-4">
-                        <span className="font-semibold text-gray-600">
-                          {p.name}
-                        </span>
-                        <p className="text-lg text-gray-700 font-bold">
-                          ${p.price}
-                        </p>
+                    <div className="w-full flex flex-row flex-between">
+                      <div className="w-full flex flex-col rounded-lg bg-white sm:flex-row">
+                        <img
+                          className="m-2 h-24 w-28 rounded-md border object-cover object-center"
+                          src="https://i.ibb.co/SPSCpFJ/glpanchera5.webp"
+                          alt=""
+                        />
+                        <div className="flex w-full flex-col px-4 py-4">
+                          <span className="font-semibold text-gray-600">
+                            {p.name}
+                          </span>
+                          <p className="text-lg text-gray-700 font-bold">
+                            ${p.price * p.quantity!}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="my-auto">
+                        <p className="text-gray-400">x{p.quantity}</p>
                       </div>
                     </div>
                   );

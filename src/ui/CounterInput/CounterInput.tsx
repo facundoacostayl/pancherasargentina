@@ -41,7 +41,7 @@ export const CounterInput: React.FC<props> = ({
           id="quantity-input"
           data-input-counter
           aria-describedby="helper-text-explanation"
-          className="w-7 lg:w-11 h-11 text-center border-y border-gray-300 text-gray-900 text-base block py-2.5 outline-none"
+          className="w-7 h-11 text-center border-y border-gray-300 text-gray-900 text-base block py-2.5 outline-none"
           value={currentProductQuantity}
           readOnly={true}
           required
