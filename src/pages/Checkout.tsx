@@ -28,7 +28,10 @@ export const Checkout = () => {
   const [formWithShippingTypeErrorState, setFormWithShippingTypeErrorState] =
     useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
-  const [shippingLocationPrice, setShippingLocationPrice] = useState<number>(0);
+  const [shippingLocation, setShippingLocation] = useState<ShippingLocation>({
+    locationName: "",
+    shippingPrice: 0,
+  });
 
   const { shoppingCartProductList, shoppingCartTotal } = useShoppingCart();
 
@@ -36,12 +39,19 @@ export const Checkout = () => {
   const shippingErrorsDisplayRef = useRef<null | HTMLDivElement>(null);
 
   useEffect(() => {
-    setLoading(false);
-  }, [readyToPayState]);
+    if (!payWithShippingState) {
+      setShippingData((data) => ({
+        ...data,
+        ["city"]: "",
+      }));
+
+      setShippingLocation({ locationName: "", shippingPrice: 0 });
+    }
+  }, [payWithShippingState]);
 
   useEffect(() => {
-    if (!payWithShippingState) setShippingLocationPrice(0);
-  }, [payWithShippingState]);
+    setLoading(false);
+  }, [readyToPayState]);
 
   const sanitizeValue = (value: string, name: string) => {
     let newValue = "";
@@ -70,7 +80,7 @@ export const Checkout = () => {
     );
 
     if (e.currentTarget.name === "city") {
-      getShippingLocationPrice(e.currentTarget.value);
+      getShippingLocation(e.currentTarget.value);
     }
 
     setShippingData({
@@ -130,9 +140,9 @@ export const Checkout = () => {
     setPayWithShippingState(bool);
   };
 
-  const getShippingLocationPrice = async (location: string) => {
+  const getShippingLocation = async (location: string) => {
     if (location === "") {
-      setShippingLocationPrice(0);
+      setShippingLocation({ locationName: "", shippingPrice: 0 });
       return;
     }
     const response = await fetch(
@@ -140,8 +150,15 @@ export const Checkout = () => {
     );
     const parseRes: ShippingLocation[] = await response.json();
     const locationItem = parseRes.find((l) => l.locationName === location);
-    const locationItemPrice = locationItem?.shippingPrice;
-    setShippingLocationPrice(locationItemPrice!);
+
+    if (locationItem) {
+      const locationItemName = locationItem.locationName;
+      const locationItemPrice = locationItem.shippingPrice;
+      setShippingLocation({
+        locationName: locationItemName,
+        shippingPrice: locationItemPrice,
+      });
+    }
   };
 
   return (
@@ -498,6 +515,7 @@ export const Checkout = () => {
                     />
                     <select
                       onChange={(e) => onChangeHandler(e)}
+                      value={shippingLocation.locationName}
                       itemType="text"
                       name="city"
                       id="city"
@@ -526,14 +544,14 @@ export const Checkout = () => {
                   <div className="flex items-center justify-between">
                     <p className="text-sm font-medium text-gray-700">Envío</p>
                     <p className="font-semibold text-gray-700">
-                      ${shippingLocationPrice}
+                      ${shippingLocation.shippingPrice}
                     </p>
                   </div>
                 </div>
                 <div className="mt-6 flex items-center justify-between">
                   <p className="text-sm font-medium text-gray-700">Total</p>
                   <p className="text-2xl font-semibold text-gray-700">
-                    ${shoppingCartTotal + shippingLocationPrice}
+                    ${shoppingCartTotal + shippingLocation.shippingPrice}
                   </p>
                 </div>
               </div>
