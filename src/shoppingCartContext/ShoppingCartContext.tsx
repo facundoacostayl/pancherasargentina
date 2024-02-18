@@ -6,6 +6,7 @@ type ShoppingCartContextProps = {
   toggleShoppingCart: VoidFunction;
   productQuantity: Product["quantity"];
   getProductQuantity: (id: Product["id"]) => void;
+  modifyProductQuantity: (id: Product["id"], action: boolean) => void;
   shoppingCartProductList: Product[];
   addProductToShoppingCart: (
     id: Product["id"],

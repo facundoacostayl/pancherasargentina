@@ -53,6 +53,24 @@ export const ShoppingCartProvider = ({ children }: Props) => {
     if (product) setProductQuantity(product.quantity);
   };
 
+  const modifyProductQuantity = (id: Product["id"], action: boolean) => {
+    const modify = (p: Product["quantity"]) => {
+      if (action) {
+        return p! + 1;
+      } else {
+        return p! + 1;
+      }
+    };
+    setShoppingCartProductList((currentProductList) =>
+      currentProductList.map((p) => {
+        if (p.id === id) {
+          return { ...p, quantity: modify(p.quantity) };
+        }
+        return p;
+      })
+    );
+  };
+
   const addProductToShoppingCart = (
     id: Product["id"],
     name: Product["name"],
@@ -64,14 +82,7 @@ export const ShoppingCartProvider = ({ children }: Props) => {
       (p) => p.id === product.id
     );
     if (repeatedProduct) {
-      setShoppingCartProductList((currentProductList) =>
-        currentProductList.map((p) => {
-          if (p.id === product.id) {
-            return { ...p, quantity: p.quantity! + 1 };
-          }
-          return p;
-        })
-      );
+      modifyProductQuantity(product.id, true);
     } else {
       setShoppingCartProductList((currentProductList) => [
         ...currentProductList,
@@ -91,6 +102,7 @@ export const ShoppingCartProvider = ({ children }: Props) => {
     toggleShoppingCart,
     productQuantity,
     getProductQuantity,
+    modifyProductQuantity,
     shoppingCartProductList,
     addProductToShoppingCart,
     removeProductFromShoppingCart,

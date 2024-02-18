@@ -1,3 +1,5 @@
+import { useShoppingCart } from "../../shoppingCartContext/ShoppingCartProvider";
+
 type props = {
   currentProductQuantity: number;
 };
@@ -5,6 +7,8 @@ type props = {
 export const CounterInput: React.FC<props> = ({
   currentProductQuantity,
 }: props) => {
+  const { modifyProductQuantity } = useShoppingCart();
+
   return (
     <form className="w-full lg:w-1/4 mx-auto lg:mx-0">
       <label
