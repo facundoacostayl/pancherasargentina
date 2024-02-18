@@ -39,6 +39,10 @@ export const Checkout = () => {
     setLoading(false);
   }, [readyToPayState]);
 
+  useEffect(() => {
+    if (!payWithShippingState) setShippingLocationPrice(0);
+  }, [payWithShippingState]);
+
   const sanitizeValue = (value: string, name: string) => {
     let newValue = "";
 
@@ -127,6 +131,10 @@ export const Checkout = () => {
   };
 
   const getShippingLocationPrice = async (location: string) => {
+    if (location === "") {
+      setShippingLocationPrice(0);
+      return;
+    }
     const response = await fetch(
       "http://localhost:8080/api/v1/shippingLocation"
     );
@@ -310,7 +318,7 @@ export const Checkout = () => {
                   ? "Tipo de Entrega"
                   : "Por favor, seleccione un tipo de entrega"}
               </p>
-              <form className="mt-5 grid gap-6">
+              <form className="mt-5 grid gap-3">
                 <div className="relative">
                   <input
                     onClick={() => togglePayWithShipping(true)}
