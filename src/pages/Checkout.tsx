@@ -291,7 +291,10 @@ export const Checkout = () => {
               {shoppingCartProductList.length ? (
                 shoppingCartProductList.map((p) => {
                   return (
-                    <div className="w-full flex flex-row flex-between px-2 lg:px-0">
+                    <div
+                      key={p.id}
+                      className="w-full flex flex-row flex-between px-2 lg:px-0"
+                    >
                       <div className="w-full flex flex-row rounded-lg bg-white">
                         <img
                           className="h-14 w-16 lg:h-20 lg:w-24 lg:m-2 rounded-md border object-cover object-center"
