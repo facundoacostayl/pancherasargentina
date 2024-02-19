@@ -2,10 +2,12 @@ import { useShoppingCart } from "../../shoppingCartContext/ShoppingCartProvider"
 
 type props = {
   currentProductQuantity: number;
+  currentProductId: number;
 };
 
 export const CounterInput: React.FC<props> = ({
   currentProductQuantity,
+  currentProductId,
 }: props) => {
   const { modifyProductQuantity } = useShoppingCart();
 
@@ -19,6 +21,7 @@ export const CounterInput: React.FC<props> = ({
       </label>
       <div className="relative flex items-center w-3/4">
         <button
+          onClick={() => modifyProductQuantity(currentProductId, false)}
           type="button"
           id="decrement-button"
           data-input-counter-decrement="quantity-input"
@@ -51,6 +54,7 @@ export const CounterInput: React.FC<props> = ({
           required
         ></input>
         <button
+          onClick={() => modifyProductQuantity(currentProductId, true)}
           type="button"
           id="increment-button"
           data-input-counter-increment="quantity-input"

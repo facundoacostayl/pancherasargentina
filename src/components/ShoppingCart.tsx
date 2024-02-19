@@ -59,6 +59,7 @@ export const ShoppingCart = () => {
                           </h4>
                           <CounterInput
                             currentProductQuantity={p.quantity!}
+                            currentProductId={p.id}
                           ></CounterInput>
                         </div>
                       </div>
