@@ -93,9 +93,13 @@ export const ShoppingCart = () => {
             >
               VOLVER A LA TIENDA
             </Link>
-            <p className="p-3 font-semibold text-base lg:text-lg text-white border-2 border-blue-300 rounded-full bg-blue-300 cursor-pointer transition ease-in-out duration-200 hover:text-blue-300 hover:bg-white">
+            <Link
+              to="/checkout"
+              onClick={() => toggleShoppingCart()}
+              className="p-3 font-semibold text-base lg:text-lg text-white border-2 border-blue-300 rounded-full bg-blue-300 cursor-pointer transition ease-in-out duration-200 hover:text-blue-300 hover:bg-white"
+            >
               Finalizar Compra
-            </p>
+            </Link>
           </div>
         </div>
       </div>

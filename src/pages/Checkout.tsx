@@ -128,6 +128,12 @@ export const Checkout = () => {
     getReadyToPay();
   };
 
+  const onSubmitOrderData = async () => {
+    const response = await fetch("http://localhost:8080/api/v1/product");
+  };
+
+  const onSubmitOrder = () => {};
+
   const getReadyToPay = () => {
     setFormWithErrorsState(false);
     setLoading(true);
@@ -624,17 +630,21 @@ export const Checkout = () => {
                     <p className="text-sm font-medium text-gray-700">
                       Subtotal
                     </p>
-                    <p className="font-semibold text-gray-700">$399.00</p>
+                    <p className="font-semibold text-gray-700">
+                      ${shoppingCartTotal}
+                    </p>
                   </div>
                   <div className="flex items-center justify-between">
                     <p className="text-sm font-medium text-gray-700">Envío</p>
-                    <p className="font-semibold text-gray-700">$8.00</p>
+                    <p className="font-semibold text-gray-700">
+                      ${shippingLocation.shippingPrice}
+                    </p>
                   </div>
                 </div>
                 <div className="mt-6 flex items-center justify-between">
                   <p className="text-sm font-medium text-gray-700">Total</p>
                   <p className="text-2xl font-semibold text-gray-700">
-                    $408.00
+                    ${shoppingCartTotal + shippingLocation.shippingPrice}
                   </p>
                 </div>
               </div>
@@ -656,6 +666,7 @@ export const Checkout = () => {
               Continuar para el pago
             </button>
             <button
+              onClick={() => onSubmitOrder()}
               className={`${
                 readyToPayState ? "block" : "hidden"
               } mt-4 mb-8 w-full rounded-md px-6 py-3 font-medium bg-gray-700 text-white border border-gray-300 hover:text-white hover:bg-gray-400 duration-200`}
