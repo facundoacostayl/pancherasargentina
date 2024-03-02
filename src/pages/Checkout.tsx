@@ -12,6 +12,7 @@ import { Footer } from "../components/Footer";
 
 import { Shipping } from "../types/shipping.type";
 import { ShippingLocation } from "../types/shipping.location";
+import { Product } from "../types/product.type";
 
 export const Checkout = () => {
   const [shippingData, setShippingData] = useState<Shipping>({
@@ -89,7 +90,7 @@ export const Checkout = () => {
     });
   };
 
-  const onSubmitShippingData = () => {
+  const onCreateShippingData = () => {
     const clientName = shippingData.clientName;
     const email = shippingData.email;
     const phone = shippingData.phone;
@@ -128,11 +129,62 @@ export const Checkout = () => {
     getReadyToPay();
   };
 
-  const onSubmitOrderData = async () => {
-    const response = await fetch("http://localhost:8080/api/v1/product");
+  const addShippingData = async () => {
+    const response = await fetch("http://localhost:8080/api/v1/shipping", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(shippingData),
+    });
+    const parseRes = await response.json();
+    return parseRes;
   };
 
-  const onSubmitOrder = () => {};
+  const addOrderData = async (shippingId: number) => {
+    const orderTotal = shoppingCartTotal + shippingLocation.shippingPrice;
+    const orderStatus = false;
+
+    const response = await fetch("http://localhost:8080/api/v1/order", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ shippingId, orderTotal, status: orderStatus }),
+    });
+
+    const parseRes = await response.json();
+    return parseRes;
+  };
+
+  const getOrderItemData = async (
+    orderId: number,
+    productId: Product["id"],
+    quantity: Product["quantity"]
+  ) => {
+    const response = await fetch("http://localhost:8080/api/v1/orderItem", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ orderId, productId, quantity }),
+    });
+    const parseRes = await response.json();
+    return parseRes;
+  };
+
+  const addOrderItemData = async (orderId: number) => {
+    const items = await Promise.all(
+      shoppingCartProductList.map((p) => {
+        getOrderItemData(orderId, p.id, p.quantity);
+      })
+    );
+
+    return items;
+  };
+
+  const onSubmitOrder = async () => {
+    const shippingDataResponse = await addShippingData();
+    let orderData;
+    if (shippingDataResponse) {
+      orderData = await addOrderData(shippingDataResponse.id);
+    }
+    orderData && addOrderItemData(orderData.id);
+  };
 
   const getReadyToPay = () => {
     setFormWithErrorsState(false);
@@ -650,7 +702,7 @@ export const Checkout = () => {
               </div>
             </div>
             <button
-              onClick={() => onSubmitShippingData()}
+              onClick={() => onCreateShippingData()}
               className={`${
                 readyToPayState && "hidden"
               } mt-4 mb-8 w-full rounded-md px-6 py-3 font-medium bg-gray-500 text-white border border-gray-300 hover:text-white hover:bg-gray-400 duration-200`}
