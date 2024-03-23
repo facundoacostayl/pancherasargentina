@@ -20,7 +20,7 @@ export const ShoppingCartIcon: React.FC = () => {
           ></FontAwesomeIcon>
         </div>
         {
-          <div className="w-3/4 h-full flex items-center justify-center border border-blue-950">
+          <div className="w-3/4 h-full flex items-center justify-center border border-gray-300">
             <p className="text-lg font-medium">
               {shoppingCartProductsQuantity}
             </p>
