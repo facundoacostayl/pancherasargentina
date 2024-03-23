@@ -15,7 +15,7 @@ export const About = () => {
       </div>
       <div className="py-12">
         <div className="lg:w-2/4 m-auto flex flex-col items-center justify-center text-center">
-          <p className="font-medium text-xl text-orange-500 mb-1">
+          <p className="font-medium text-xl text-blue-900 mb-1">
             Sobre Nosotros
           </p>
           <h1 className="font-semibold text-6xl text-gray-700 mb-5">
