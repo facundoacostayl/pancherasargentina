@@ -18,11 +18,13 @@ body {
   min-width: 320px;
   min-height: 100vh;
   height: 100%;
+  padding: 0 10px;
 }
 
 @media (min-width: 768px) {
   body {
     background: linear-gradient(180deg, #eef0ed 40%, #ffffff 40%);
+    padding: 0 20px;
   }
 }
 

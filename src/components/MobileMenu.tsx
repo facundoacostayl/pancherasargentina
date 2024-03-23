@@ -15,7 +15,7 @@ export const MobileMenu = () => {
     <div
       className={`${
         mobileMenuState ? "top-0 left-0" : "top-0 -left-full"
-      } lg:hidden fixed w-full h-full bg-white transition-all duration-[400ms] z-50`}
+      } lg:hidden fixed w-3/4 h-screen bg-white transition-all duration-[400ms] z-50`}
     >
       <div className="">
         <span

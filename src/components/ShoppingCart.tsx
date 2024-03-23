@@ -20,9 +20,9 @@ export const ShoppingCart = () => {
       <div
         className={`${
           shoppingCartState ? "top-0 right-0" : "top-0 -right-full"
-        } fixed w-4/5 lg:w-3/12 h-full z-50 bg-white border border-gray-500 transition-all duration-[400ms]`}
+        } fixed w-4/5 lg:w-2/5 xl:w-3/12 h-screen z-50 bg-white border border-gray-500 transition-all duration-[400ms]`}
       >
-        <div className="relative w-full py-16 px-3">
+        <div className="relative w-full h-2/4 py-12 lg:py-16 px-3">
           <span
             onClick={() => toggleShoppingCart()}
             className="absolute right-7 top-7 text-2xl text-gray-600 font-semibold cursor-pointer transition ease-in-out duration-200 hover:text-gray-400"
@@ -32,7 +32,7 @@ export const ShoppingCart = () => {
           <h2 className="border-b border-gray-200 py-5 text-center text-3xl text-gray-600 lg:text-4xl font-semibold">
             Tus Productos
           </h2>
-          <ul className="overflow-y-scroll py-8 border-b-4">
+          <ul className="h-full overflow-y-scroll py-8 border-b-4">
             {shoppingCartProductList ? (
               shoppingCartProductList.map((p) => {
                 return (
