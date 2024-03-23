@@ -58,7 +58,7 @@ export const ShoppingCartProvider = ({ children }: Props) => {
       if (action) {
         return p! + 1;
       } else {
-        return p! + 1;
+        return p! - 1;
       }
     };
     setShoppingCartProductList((currentProductList) =>
