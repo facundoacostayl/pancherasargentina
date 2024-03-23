@@ -103,7 +103,7 @@ export const Contact = () => {
       <section className="">
         <ToastContainer />
         <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
-          <h2 className="mb-4 text-4xl font-bold text-center text-blue-500">
+          <h2 className="mb-4 text-4xl font-bold text-center text-blue-900">
             Contactanos
           </h2>
           <p className="mb-8 lg:mb-16 font-light text-center text-gray-600 sm:text-xl">
@@ -173,7 +173,7 @@ export const Contact = () => {
             <div className="flex">
               <button
                 type="submit"
-                className="mt-4 mb-8 w-full lg:w-1/3 lg:mx-auto rounded-md px-6 py-3 font-medium bg-gray-500 text-white border border-gray-300 hover:text-white hover:bg-gray-400 duration-200"
+                className="mt-4 mb-8 w-full lg:w-1/3 lg:mx-auto rounded-md px-6 py-3 font-medium bg-gray-800 text-white hover:bg-gray-900 duration-200"
               >
                 {loading && (
                   <SpinnerCircularFixed
