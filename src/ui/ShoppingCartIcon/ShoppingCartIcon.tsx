@@ -10,7 +10,7 @@ export const ShoppingCartIcon: React.FC = () => {
   return (
     <div
       onClick={() => toggleShoppingCart()}
-      className="w-[65px] h-[45px] cursor-pointer"
+      className="w-[50px] h-[35px] lg:w-[65px] lg:h-[45px] cursor-pointer"
     >
       <div className="w-full h-full flex justify-center items-center rounded-md">
         <div className="flex items-center justify-center w-full h-full bg-blue-950">
