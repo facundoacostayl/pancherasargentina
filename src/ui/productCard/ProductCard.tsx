@@ -22,18 +22,19 @@ export const ProductCard: React.FC<props> = ({
         <Link to={`/producto/${id}`}>
           <div className="mx-5 mb-2 pb-4 border-b">
             <img src={image} alt="product.image en src" />
-            <h4 className="text-xl text-blue-900">{name}</h4>
+            <h4 className="text-xl text-gray-900">{name}</h4>
           </div>
         </Link>
-        <p className="text-2xl text-orange-500 font-medium">${price}</p>
+        <p className="text-2xl text-gray-900 font-normal">${price}</p>
         <div
           onClick={() => addProductToShoppingCart(id, name, price, image)}
-          className="inline-block cursor-pointer border rounded-xl p-3 mt-2 mb-1 text-gray-800 hover:bg-gray-700 hover:text-white transition-all duration-200"
+          className="flex items-center justify-center gap-3 cursor-pointer border p-3 mt-3 mb-1 text-white bg-gray-800 hover:bg-gray-900 transition-all duration-100"
         >
           <FontAwesomeIcon
-            className="text-3xl"
+            className="text-2xl"
             icon={faBagShopping}
           ></FontAwesomeIcon>
+          <p>Agregar al Carrito</p>
         </div>
       </div>
     </li>
