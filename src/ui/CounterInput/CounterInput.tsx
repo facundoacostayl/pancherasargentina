@@ -15,7 +15,7 @@ export const CounterInput: React.FC<props> = ({
     <form className="w-full lg:w-1/4 mx-auto lg:mx-0">
       <label
         htmlFor="quantity-input"
-        className="block mb-2 text-sm font-medium text-gray-500"
+        className="block mb-1 text-sm font-medium text-gray-500"
       >
         Cantidad:
       </label>
@@ -25,10 +25,10 @@ export const CounterInput: React.FC<props> = ({
           type="button"
           id="decrement-button"
           data-input-counter-decrement="quantity-input"
-          className=" border border-r-0 border-gray-300 rounded-s-lg p-3 h-11"
+          className="p-3 lg:h-9 border border-r-0 border-gray-300 rounded-s-lg"
         >
           <svg
-            className="w-3 h-3 text-gray-900 "
+            className="w-2 h-2 text-gray-800"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -48,7 +48,7 @@ export const CounterInput: React.FC<props> = ({
           id="quantity-input"
           data-input-counter
           aria-describedby="helper-text-explanation"
-          className="w-7 h-11 text-center border-y border-gray-300 text-gray-900 text-base block py-2.5 outline-none"
+          className="w-7 lg:h-9 text-center border-y border-gray-300 text-gray-800 text-base block py-1 lg:py-2.5 outline-none"
           value={currentProductQuantity}
           readOnly={true}
           required
@@ -58,10 +58,10 @@ export const CounterInput: React.FC<props> = ({
           type="button"
           id="increment-button"
           data-input-counter-increment="quantity-input"
-          className="border border-l-0 border-gray-300 rounded-e-lg p-3 h-11"
+          className="p-3 lg:h-9 border border-l-0 border-gray-300 rounded-e-lg"
         >
           <svg
-            className="w-3 h-3 text-gray-900"
+            className="w-2 h-2 text-gray-800"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
