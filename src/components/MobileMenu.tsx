@@ -1,7 +1,12 @@
 import { useMobileMenu } from "../mobileMenuContext/MobileMenuProvider";
-
-import { Logo } from "../ui/logo";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faHouse,
+  faShop,
+  faPhone,
+  faBook,
+} from "@fortawesome/free-solid-svg-icons";
 
 export const MobileMenu = () => {
   const { mobileMenuState, toggleMobileMenu } = useMobileMenu();
@@ -22,22 +27,26 @@ export const MobileMenu = () => {
         <div className="py-14">
           <h3 className="p-2 mb-5 text-2xl text-gray-800 font-medium">Menú</h3>
           <ul onClick={() => toggleMobileMenu()} className="text-lg">
-            <li className="border-t border-gray-200 p-3">
+            <li className="flex items-center gap-2 border-t border-gray-200 px-3 py-5">
+              <FontAwesomeIcon icon={faHouse}></FontAwesomeIcon>
               <Link to="/">Inicio</Link>
             </li>
-            <li className="border-t border-gray-200 p-3">
+            <li className="flex items-center gap-2 border-t border-gray-200 px-3 py-5">
+              <FontAwesomeIcon icon={faShop}></FontAwesomeIcon>
+
               <Link to="/shop">Tienda</Link>
             </li>
-            <li className="border-t border-gray-200 p-3">
+            <li className="flex items-center gap-2 border-t border-gray-200 px-3 py-5">
+              <FontAwesomeIcon icon={faPhone}></FontAwesomeIcon>
+
               <Link to="/contacto">Contacto</Link>
             </li>
-            <li className="border-y border-gray-200 p-3">
+            <li className="flex items-center gap-2 border-t border-gray-200 px-3 py-5">
+              <FontAwesomeIcon icon={faBook}></FontAwesomeIcon>
+
               <Link to="/sobre-nosotros">Sobre Nosotros</Link>
             </li>
           </ul>
-        </div>
-        <div className="w-full mx-auto absolute bottom-5">
-          <Logo></Logo>
         </div>
       </div>
     </div>
