@@ -32,7 +32,7 @@ export const ShoppingCart = () => {
           <h2 className="border-b border-gray-200 py-5 text-center text-3xl text-gray-600 lg:text-4xl font-semibold">
             Tus Productos
           </h2>
-          <ul className="overflow-y-scroll py-8 border-b-8 border-blue-300">
+          <ul className="overflow-y-scroll py-8 border-b-4">
             {shoppingCartProductList ? (
               shoppingCartProductList.map((p) => {
                 return (
@@ -89,16 +89,16 @@ export const ShoppingCart = () => {
             <Link
               to="/shop"
               onClick={() => toggleShoppingCart()}
-              className="font-semibold text-base text-gray-600 lg:text-lg cursor-pointer transition ease-in-out duration-200 hover:text-gray-400"
+              className="text-gray-600 lg:text-lg cursor-pointer transition ease-in-out duration-200 hover:text-gray-400"
             >
-              VOLVER A LA TIENDA
+              Volver a la tienda
             </Link>
             <Link
               to="/checkout"
               onClick={() => toggleShoppingCart()}
-              className="p-3 font-semibold text-base lg:text-lg text-white border-2 border-blue-300 rounded-full bg-blue-300 cursor-pointer transition ease-in-out duration-200 hover:text-blue-300 hover:bg-white"
+              className="w-full py-2 px-3 font-medium text-center lg:text-md text-white border-2 border-blue-900 bg-blue-900 cursor-pointer hover:bg-blue-950 transition ease-in-out duration-100 "
             >
-              Finalizar Compra
+              INICIAR COMPRA
             </Link>
           </div>
         </div>
