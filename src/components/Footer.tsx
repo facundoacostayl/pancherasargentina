@@ -24,7 +24,7 @@ export const Footer: React.FC = () => {
               <Link to="/contacto">Contacto</Link>
             </li>
             <li>
-              <Link to="/about">Sobre Nosotros</Link>
+              <Link to="/sobre-nosotros">Sobre Nosotros</Link>
             </li>
           </ul>
           <div className="py-5 text-gray-800 text-md font-medium flex flex-col items-center gap-3">
@@ -37,7 +37,7 @@ export const Footer: React.FC = () => {
               mggastronomia@gmail.com
             </p>
           </div>
-          <div className="mx-auto w-1/6 pt-2 pb-5 flex justify-evenly items-center">
+          <div className="mx-auto w-full lg:w-1/6 pt-2 pb-5 flex justify-evenly items-center">
             <img
               className="w-[50px] h-auto"
               src="https://i.ibb.co/5GsdbBg/Mercadopago-logo-1.webp"
