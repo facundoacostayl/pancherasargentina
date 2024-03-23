@@ -89,6 +89,7 @@ export const ShoppingCartProvider = ({ children }: Props) => {
         product,
       ]);
     }
+    toggleShoppingCart();
   };
 
   const removeProductFromShoppingCart = (id: Product["id"]) => {
