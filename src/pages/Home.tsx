@@ -10,7 +10,7 @@ import { NavBar } from "../ui/NavBar";
 
 export const Home = () => {
   return (
-    <div className="">
+    <div className="pt-[60px] lg:pt-[70px]">
       <ShoppingCart></ShoppingCart>
       <MobileMenu></MobileMenu>
       <div className="app">
