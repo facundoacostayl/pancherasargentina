@@ -226,7 +226,7 @@ export const Checkout = () => {
     <div className="">
       <ShoppingCart></ShoppingCart>
       <MobileMenu></MobileMenu>
-      <div className="app">
+      <div className="app main">
         <Top></Top>
         <NavBar></NavBar>
 

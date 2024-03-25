@@ -9,7 +9,7 @@ export const About = () => {
     <div className="">
       <ShoppingCart></ShoppingCart>
       <MobileMenu></MobileMenu>
-      <div className="app">
+      <div className="app main">
         <Top></Top>
         <NavBar></NavBar>
       </div>
