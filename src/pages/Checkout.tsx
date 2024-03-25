@@ -49,7 +49,7 @@ export const Checkout = () => {
 
   const createMpPreference = async () => {
     try {
-      const response = await fetch("http://localhost:5173/api/mp", {
+      const response = await fetch("http://localhost:5173/api/v1/mp", {
         method: "POST",
         headers: {
           Accept: "Application/json",
