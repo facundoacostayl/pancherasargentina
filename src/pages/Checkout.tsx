@@ -60,8 +60,16 @@ export const Checkout = () => {
       const parseRes = await response.json();
       const preferenceId = parseRes.data.id;
       console.log(preferenceId);
+      return preferenceId;
     } catch (e) {
       alert("Error");
+    }
+  };
+
+  const handleMpBuy = async () => {
+    const id = await createMpPreference();
+    if (id) {
+      setPreferenceId(id);
     }
   };
 
@@ -210,6 +218,8 @@ export const Checkout = () => {
       orderData = await addOrderData(shippingDataResponse.id);
     }
     orderData && addOrderItemData(orderData.id);
+
+    await handleMpBuy();
   };
 
   const getReadyToPay = () => {
@@ -645,7 +655,6 @@ export const Checkout = () => {
                 </div>
               </div>
             </div>
-
             <div className={`${!readyToPayState ? "hidden" : "block"} `}>
               <p className="text-xl text-gray-700 font-medium">
                 Confirmación del pedido
@@ -745,14 +754,19 @@ export const Checkout = () => {
               )}
               Continuar para el pago
             </button>
+
             <button
-              //onClick={() => onSubmitOrder()}
+              onClick={() => onSubmitOrder()}
               className={`${
                 readyToPayState ? "block" : "hidden"
               } mt-4 mb-8 w-full rounded-md px-6 py-3 font-medium bg-gray-700 text-white border border-gray-300 hover:text-white hover:bg-gray-400 duration-200`}
             >
-              <Wallet initialization={{ preferenceId: "<PREFERENCE_ID" }} />;
+              Finalizar Compra
             </button>
+
+            {preferenceId && (
+              <Wallet initialization={{ preferenceId: preferenceId }} />
+            )}
           </div>
         </div>
       </div>
