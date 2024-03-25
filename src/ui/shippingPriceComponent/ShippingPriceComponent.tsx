@@ -1,4 +1,5 @@
 type props = {
+  key: number;
   price: number;
   location: string;
 };

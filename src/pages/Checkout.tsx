@@ -30,6 +30,7 @@ export const Checkout = () => {
     useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [shippingLocation, setShippingLocation] = useState<ShippingLocation>({
+    id: 0,
     locationName: "",
     shippingPrice: 0,
   });
@@ -46,7 +47,7 @@ export const Checkout = () => {
         ["city"]: "",
       }));
 
-      setShippingLocation({ locationName: "", shippingPrice: 0 });
+      setShippingLocation({ id: 0, locationName: "", shippingPrice: 0 });
     }
   }, [payWithShippingState]);
 
@@ -200,7 +201,7 @@ export const Checkout = () => {
 
   const getShippingLocation = async (location: string) => {
     if (location === "") {
-      setShippingLocation({ locationName: "", shippingPrice: 0 });
+      setShippingLocation({ id: 0, locationName: "", shippingPrice: 0 });
       return;
     }
     const response = await fetch(
@@ -210,9 +211,11 @@ export const Checkout = () => {
     const locationItem = parseRes.find((l) => l.locationName === location);
 
     if (locationItem) {
+      const locationItemId = locationItem.id;
       const locationItemName = locationItem.locationName;
       const locationItemPrice = locationItem.shippingPrice;
       setShippingLocation({
+        id: locationItemId,
         locationName: locationItemName,
         shippingPrice: locationItemPrice,
       });

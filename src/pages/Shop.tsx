@@ -18,7 +18,7 @@ export const Shop = () => {
     <div className="">
       <ShoppingCart></ShoppingCart>
       <MobileMenu></MobileMenu>
-      <div className="app">
+      <div className="app main">
         <Top></Top>
         <NavBar></NavBar>
         <div className="py-3 lg:py-5 px-2 lg:px-0 flex flex-col lg:flex-row justify-between">

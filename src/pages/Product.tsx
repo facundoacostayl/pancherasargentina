@@ -25,6 +25,7 @@ export const Product = () => {
     ShippingLocation[]
   >([
     {
+      id: 0,
       locationName: "",
       shippingPrice: 0,
     },
@@ -54,7 +55,7 @@ export const Product = () => {
     <div className="">
       <ShoppingCart></ShoppingCart>
       <MobileMenu></MobileMenu>
-      <div className="app">
+      <div className="app main">
         <Top></Top>
         <NavBar></NavBar>
 
@@ -76,6 +77,7 @@ export const Product = () => {
               </div>
               <div className="flex flex-col gap-4">
                 <CounterInput
+                  currentProductId={currentProduct.id}
                   currentProductQuantity={productQuantity!}
                 ></CounterInput>
                 <AddButton></AddButton>
@@ -99,6 +101,7 @@ export const Product = () => {
                   {shippingLocations.map((item) => {
                     return (
                       <ShippingPriceComponent
+                        key={item.id}
                         price={item.shippingPrice}
                         location={item.locationName}
                       ></ShippingPriceComponent>
