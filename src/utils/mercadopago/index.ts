@@ -1,0 +1,1 @@
+export { MercadoPago } from "./MercadoPago";
