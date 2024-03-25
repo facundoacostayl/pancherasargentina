@@ -21,16 +21,24 @@ body {
   padding: 0 10px;
 }
 
+.app {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.main {
+  padding-top: 60px;
+}
+
 @media (min-width: 768px) {
   body {
     background: linear-gradient(180deg, #fafafa 40%, #ffffff 40%);
     padding: 0 20px;
   }
-}
 
-.app {
-  max-width: 1600px;
-  margin: 0 auto;
+  .main {
+    padding-top: 70px;
+  }
 }
 
 @tailwind base;

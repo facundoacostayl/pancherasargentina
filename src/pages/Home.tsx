@@ -13,7 +13,7 @@ export const Home = () => {
     <div>
       <ShoppingCart></ShoppingCart>
       <MobileMenu></MobileMenu>
-      <div className="app pt-[60px] lg:pt-[70px]">
+      <div className="app main">
         <Top></Top>
         <div className="border border-gray-100 rounded-md">
           <NavBar></NavBar>
