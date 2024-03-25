@@ -23,7 +23,7 @@ body {
 
 @media (min-width: 768px) {
   body {
-    background: linear-gradient(180deg, #eef0ed 40%, #ffffff 40%);
+    background: linear-gradient(180deg, #fafafa 40%, #ffffff 40%);
     padding: 0 20px;
   }
 }
