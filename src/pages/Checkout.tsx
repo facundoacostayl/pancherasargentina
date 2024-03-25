@@ -14,6 +14,9 @@ import { Shipping } from "../types/shipping.type";
 import { ShippingLocation } from "../types/shipping.location";
 import { Product } from "../types/product.type";
 
+// MERCADOPAGO
+import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
+
 export const Checkout = () => {
   const [shippingData, setShippingData] = useState<Shipping>({
     clientName: "",
@@ -34,11 +37,33 @@ export const Checkout = () => {
     locationName: "",
     shippingPrice: 0,
   });
-
   const { shoppingCartProductList, shoppingCartTotal } = useShoppingCart();
-
   const errorsDisplayRef = useRef<null | HTMLDivElement>(null);
   const shippingErrorsDisplayRef = useRef<null | HTMLDivElement>(null);
+
+  //MERCADOPAGO IMPLEMENTATION
+  const [preferenceId, setPreferenceId] = useState(null);
+  initMercadoPago("TEST-eb7bf224-54f8-44a7-8c8a-3ef6138adbfd", {
+    locale: "es-AR",
+  });
+
+  const createMpPreference = async () => {
+    try {
+      const response = await fetch("http://localhost:5173/api/mp", {
+        method: "POST",
+        headers: {
+          Accept: "Application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(shoppingCartProductList),
+      });
+      const parseRes = await response.json();
+      const preferenceId = parseRes.data.id;
+      console.log(preferenceId);
+    } catch (e) {
+      alert("Error");
+    }
+  };
 
   useEffect(() => {
     if (!payWithShippingState) {
@@ -721,12 +746,12 @@ export const Checkout = () => {
               Continuar para el pago
             </button>
             <button
-              onClick={() => onSubmitOrder()}
+              //onClick={() => onSubmitOrder()}
               className={`${
                 readyToPayState ? "block" : "hidden"
               } mt-4 mb-8 w-full rounded-md px-6 py-3 font-medium bg-gray-700 text-white border border-gray-300 hover:text-white hover:bg-gray-400 duration-200`}
             >
-              Realizar pedido
+              <Wallet initialization={{ preferenceId: "<PREFERENCE_ID" }} />;
             </button>
           </div>
         </div>
