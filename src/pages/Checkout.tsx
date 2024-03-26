@@ -50,9 +50,18 @@ export const Checkout = () => {
   const createMpPreference = async () => {
     try {
       const article = {
-        title: "Producto Prueba",
-        quantity: 1,
-        unit_price: 5000,
+        items: [
+          {
+            title: "Producto Prueba",
+            quantity: 1,
+            unit_price: 5000,
+          },
+          {
+            title: "Segundo Producto",
+            quantity: 2,
+            unit_price: 10000,
+          },
+        ],
       };
 
       const response = await fetch("http://localhost:8080/api/v1/mp", {
@@ -60,8 +69,9 @@ export const Checkout = () => {
         headers: {
           "Content-Type": "application/json",
         }, //body: JSON.stringify(shoppingCartProductList),
-        body: JSON.stringify(article),
+        body: JSON.stringify(article.items),
       });
+      console.log(JSON.stringify(article));
       const preferenceId = await response.text();
       console.log(preferenceId);
       return preferenceId;
