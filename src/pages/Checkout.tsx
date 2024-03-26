@@ -55,7 +55,12 @@ export const Checkout = () => {
           Accept: "Application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(shoppingCartProductList),
+        //body: JSON.stringify(shoppingCartProductList),
+        body: JSON.stringify({
+          title: "Producto Prueba",
+          quantity: 1,
+          unit_price: 5000,
+        }),
       });
       const parseRes = await response.json();
       const preferenceId = parseRes.data.id;
@@ -67,10 +72,9 @@ export const Checkout = () => {
   };
 
   const handleMpBuy = async () => {
-    const id = await createMpPreference();
-    if (id) {
-      setPreferenceId(id);
-    }
+    const preferenceId = await createMpPreference();
+    if (!preferenceId) return;
+    setPreferenceId(preferenceId);
   };
 
   useEffect(() => {
@@ -187,6 +191,14 @@ export const Checkout = () => {
     return parseRes;
   };
 
+  /*const updateOrderData = async (orderId: number, preferenceId: string) => {
+    await fetch(`http://localhost:8080/api/v1/orderItem/${orderId}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ preferenceId }),
+    });
+  };*/
+
   const getOrderItemData = async (
     orderId: number,
     productId: Product["id"],
@@ -217,9 +229,16 @@ export const Checkout = () => {
     if (shippingDataResponse) {
       orderData = await addOrderData(shippingDataResponse.id);
     }
-    orderData && addOrderItemData(orderData.id);
-
-    await handleMpBuy();
+    let orderItemData;
+    if (orderData) {
+      orderItemData = await addOrderItemData(orderData.id);
+    }
+    if (orderItemData) {
+      await handleMpBuy();
+    }
+    /*if (preferenceId) {
+      updateOrderData(preferenceId);
+    }*/
   };
 
   const getReadyToPay = () => {
