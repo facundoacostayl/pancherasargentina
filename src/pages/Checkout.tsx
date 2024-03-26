@@ -42,32 +42,31 @@ export const Checkout = () => {
   const shippingErrorsDisplayRef = useRef<null | HTMLDivElement>(null);
 
   //MERCADOPAGO IMPLEMENTATION
-  const [preferenceId, setPreferenceId] = useState(null);
+  const [preferenceId, setPreferenceId] = useState<string>("");
   initMercadoPago("TEST-eb7bf224-54f8-44a7-8c8a-3ef6138adbfd", {
     locale: "es-AR",
   });
 
   const createMpPreference = async () => {
     try {
-      const response = await fetch("http://localhost:5173/api/v1/mp", {
+      const article = {
+        title: "Producto Prueba",
+        quantity: 1,
+        unit_price: 5000,
+      };
+
+      const response = await fetch("http://localhost:8080/api/v1/mp", {
         method: "POST",
         headers: {
-          Accept: "Application/json",
           "Content-Type": "application/json",
-        },
-        //body: JSON.stringify(shoppingCartProductList),
-        body: JSON.stringify({
-          title: "Producto Prueba",
-          quantity: 1,
-          unit_price: 5000,
-        }),
+        }, //body: JSON.stringify(shoppingCartProductList),
+        body: JSON.stringify(article),
       });
-      const parseRes = await response.json();
-      const preferenceId = parseRes.data.id;
+      const preferenceId = await response.text();
       console.log(preferenceId);
       return preferenceId;
     } catch (e) {
-      alert("Error");
+      console.log(e);
     }
   };
 
